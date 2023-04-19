@@ -71,25 +71,30 @@
     align-items: flex-start;
   }
   
+  /* Dancers still in turn */
   .dragactive {
-    background-color: rgb(0, 221, 236);
+    background-color: rgb(172, 202, 215);
   }
   
   .dragcomplete {
-    background-color: rgb(255, 38, 0);
+    background-color: rgb(0, 255, 234);
   }
   
-  .remove {
-    background-color: rgb(235, 103, 80);
+  /* Dancers that passed */
+  .remove { 
+    background-color: rgb(161, 52, 190);
   }
   
+  /* Dancers that did not pass */
+  .battled {
+    background-color: rgb(235, 80, 80);
+  }
+
   .todos__heading {
     font-size: 30px;
     text-align: center;
     color: white;
   }
-  
-  
   
   .drag {
     box-shadow: 0 0 20px black;

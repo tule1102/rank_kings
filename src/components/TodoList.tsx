@@ -8,6 +8,8 @@ interface props {
   setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
   setCompletedTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
   completedTodos: Array<Todo>;
+  setBattled: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  battled: Array<Todo>;
 }
 
 const TodoList: React.FC<props> = ({
@@ -15,6 +17,8 @@ const TodoList: React.FC<props> = ({
   setTodos,
   completedTodos,
   setCompletedTodos,
+  battled,
+  setBattled
 }) => {
   return (
     <div className="container">
@@ -48,7 +52,7 @@ const TodoList: React.FC<props> = ({
               snapshot.isDraggingOver ? "dragcomplete" : "remove"
             }`}
           >
-            <span className="todos__heading">Top 16</span>
+            <span className="todos__heading">Placed</span>
             {completedTodos?.map((todo, index) => (
               <SingleTodo
                 index={index}
@@ -56,6 +60,29 @@ const TodoList: React.FC<props> = ({
                 todo={todo}
                 key={todo.id}
                 setTodos={setCompletedTodos}
+              />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+      <Droppable droppableId="Battled">
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className={`todos  ${
+              snapshot.isDraggingOver ? "dragcomplete" : "battled"
+            }`}
+          >
+            <span className="todos__heading">Battled</span>
+            {battled?.map((todo, index) => (
+              <SingleTodo
+                index={index}
+                todos={battled}
+                todo={todo}
+                key={todo.id}
+                setTodos={setBattled}
               />
             ))}
             {provided.placeholder}
