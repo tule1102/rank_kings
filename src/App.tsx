@@ -28,7 +28,7 @@ const App: React.FC = () => {
 
     console.log(result);
 
-    if (!destination ) {
+    if (!destination) {
       return;
     }
 
@@ -45,7 +45,6 @@ const App: React.FC = () => {
 
 
       if (source.droppableId === "TodoList") {
-        console.log("Source Logic")
         add = active[source.index];
         active.splice(source.index, 1);
       } else if (source.droppableId === "TodosRemove") {

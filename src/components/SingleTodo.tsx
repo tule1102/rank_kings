@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import { MdDone } from "react-icons/md";
+import { AiFillEdit, AiFillDelete, AiOutlineStar, AiFillStar } from "react-icons/ai";
+// import { AiOutlineStar } from "react-icons/md";
 import { Todo } from "../model";
 import { Draggable } from "react-beautiful-dnd";
 
@@ -13,10 +13,10 @@ const SingleTodo: React.FC<{
     }> = ({ index, todo, todos, setTodos }) => {
       const [edit, setEdit] = useState<boolean>(false);
       const [editTodo, setEditTodo] = useState<string>(todo.todo);
-
       const inputRef = useRef<HTMLInputElement>(null);
       useEffect(() => {
         inputRef.current?.focus();
+
   }, [edit]);
 
   const handleEdit = (e: React.FormEvent, id: number) => {
@@ -57,7 +57,7 @@ const SingleTodo: React.FC<{
               ref={inputRef}
             />
           ) : todo.isDone ? (
-            <s className="todos__single--text">{todo.todo}</s>
+            <span className="todos__single--text">{todo.todo}</span>
           ) : (
             <span className="todos__single--text">{todo.todo}</span>
           )}
@@ -76,7 +76,7 @@ const SingleTodo: React.FC<{
               <AiFillDelete />
             </span>
             <span className="icon" onClick={() => handleDone(todo.id)}>
-              <MdDone />
+              {todo.isDone ? <AiFillStar /> : <AiOutlineStar />}
             </span>
           </div>
         </form>
