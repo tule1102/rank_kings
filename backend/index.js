@@ -1,16 +1,16 @@
 import "dotenv/config";
 import mongoose from "mongoose";
 import express from "express";
-// import env from "./util/validateEnv";
+import env from "./util/validateEnv.mjs"
 const app = express();
 
-// app.get("/", (req, res) => {
-//     res.send("Hello Worlds")
-// })
+app.get("/", (req, res) => {
+    res.send("Hello Worlds")
+})
 
-const port = process.env.PORT;
+const port = env.PORT;
 
-mongoose.connect(process.env.MONGO_CONNECTION_STRING)
+mongoose.connect(env.MONGO_CONNECTION_STRING)
     .then(() => {
         console.log("Mongoose connected");
         app.listen(port, () => {
@@ -19,3 +19,6 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING)
 
     })
     .catch(console.error);
+
+ 
+
