@@ -52,7 +52,7 @@ const TodoList: React.FC<props> = ({
               snapshot.isDraggingOver ? "dragcomplete" : "remove"
             }`}
           >
-            <span className="todos__heading">Placed</span>
+            <span className="todos__heading">Ranked</span>
             {completedTodos?.map((todo, index) => (
               <SingleTodo
                 index={index}

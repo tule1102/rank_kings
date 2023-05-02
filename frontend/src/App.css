@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #2f74c0;
+  /* background-color: #2f74c0; */
+  background-image: url("https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg");
   font-family: "Roboto", cursive;
 }
 

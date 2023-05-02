@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/Login';
+import Registration from './pages/Registration';
+import Dashboard from './pages/Dashboard';
+import CreateJam from './pages/CreateJam';
 
 
 const root = ReactDOM.createRoot(
@@ -12,8 +15,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
   <Routes>
-    <Route path="/" element={<App/>}/>
-    <Route path="/login" element={<Login/>}/>
+    <Route path="/rankking" element={<App/>}/>
+    <Route path="/" element={<Login/>}/>
+    <Route path="/registration" element={<Registration/>}/>
+    <Route path="/dashboard" element={<Dashboard/>}/>
+    <Route path="/createJam" element={<CreateJam/>}/>
   </Routes>
   </BrowserRouter>
 );
