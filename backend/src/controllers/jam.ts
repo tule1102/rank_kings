@@ -4,14 +4,13 @@ import mongoose from "mongoose";
 import JamModel from "../models/jam";
 import { assertIsDefined } from "../util/assertIsDefined";
 
+
 export const getJams: RequestHandler = async (req, res, next) => {
 
-    res.send("getJams works tu!")
     const authenticatedUserId = req.session.userId;
-
+    
     try {
         assertIsDefined(authenticatedUserId);
-
         const jams = await JamModel.find({ userId: authenticatedUserId }).exec();
         res.status(200).json(jams);
     } catch (error) {
@@ -19,39 +18,47 @@ export const getJams: RequestHandler = async (req, res, next) => {
     }
 };
 
-// export const getNote: RequestHandler = async (req, res, next) => {
-//     const noteId = req.params.noteId;
-//     const authenticatedUserId = req.session.userId;
+export const getJam: RequestHandler = async (req, res, next) => {
 
-//     try {
-//         assertIsDefined(authenticatedUserId);
+    const jamId = req.params.id;
+    const authenticatedUserId = req.session.userId;
 
-//         if (!mongoose.isValidObjectId(noteId)) {
-//             throw createHttpError(400, "Invalid note id");
-//         }
+    try {
 
-//         const note = await NoteModel.findById(noteId).exec();
+        assertIsDefined(authenticatedUserId);
 
-//         if (!note) {
-//             throw createHttpError(404, "Note not found");
-//         }
+        if (!mongoose.isValidObjectId(jamId)) {
+            throw createHttpError(400, "Invalid note id");
+        }
 
-//         if (!note.userId.equals(authenticatedUserId)) {
-//             throw createHttpError(401, "You cannot access this note");
-//         }
+        const jam = await JamModel.findById(jamId).exec();
 
-//         res.status(200).json(note);
-//     } catch (error) {
-//         next(error);
-//     }
-// };
+        if (!jam) {
+            throw createHttpError(404, "jam not found");
+        }
+
+        if (!jam.userId.equals(authenticatedUserId)) {
+            throw createHttpError(401, "You cannot access this jam");
+        }
+
+        res.status(200).json(jam);
+    } catch (error) {
+        next(error);
+    }
+};
 
 interface CreateJamBody {
-    title?: string
+    title: string,
+    todos: Array<any>,
+    completedTodos: Array<any>,
+    battled: Array<any> 
 }
 
 export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown> = async (req, res, next) => {
     const title = req.body.title;
+    const todos = req.body.todos;
+    const completedTodos = req.body.completedTodos;
+    const battled = req.body.battled;
     const authenticatedUserId = req.session.userId;
 
     try {
@@ -63,61 +70,73 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
 
         const newJam = await JamModel.create({
             userId: authenticatedUserId,
-            title: title
+            title: title,
+            todos: todos,
+            completedTodos: completedTodos,
+            battled: battled,
         });
 
         res.status(201).json(newJam);
     } catch (error) {
+        // console.error(error)
         next(error);
     }
 };
 
-// interface UpdateNoteParams {
-//     noteId: string,
-// }
+interface UpdateNoteParams {
+    id: string;
+    todos: Array<any>,
+    completedTodos: Array<any>,
+    battled: Array<any>
+    authticatedUserId: any
+}
 
 // interface UpdateNoteBody {
 //     title?: string,
 //     text?: string,
 // }
 
-// export const updateNote: RequestHandler<UpdateNoteParams, unknown, UpdateNoteBody, unknown> = async (req, res, next) => {
-//     const noteId = req.params.noteId;
-//     const newTitle = req.body.title;
-//     const newText = req.body.text;
-//     const authenticatedUserId = req.session.userId;
+export const updateJam: RequestHandler<UpdateNoteParams> = async (req, res, next) => {
+    const todos = req.body.todos;
+    const completedTodos = req.body.completedTodos;
+    const battled = req.body.battled;
+    const authenticatedUserId = req.session.userId;
+    // const jamKey = req.body.id;
+    const id = req.body.id
 
-//     try {
-//         assertIsDefined(authenticatedUserId);
+    console.log("Type of Id is ", typeof(id))
+    // const jamKey = new mongoose.Types.ObjectId(id);
 
-//         if (!mongoose.isValidObjectId(noteId)) {
-//             throw createHttpError(400, "Invalid note id");
-//         }
 
-//         if (!newTitle) {
-//             throw createHttpError(400, "Note must have a title");
-//         }
+    try {
+        assertIsDefined(authenticatedUserId);
 
-//         const note = await NoteModel.findById(noteId).exec();
+        if (!mongoose.isValidObjectId(id)) {
+            throw createHttpError(400, "Invalid Jam id");
+        }
 
-//         if (!note) {
-//             throw createHttpError(404, "Note not found");
-//         }
+        const jam = await JamModel.findById(id).exec();
 
-//         if (!note.userId.equals(authenticatedUserId)) {
-//             throw createHttpError(401, "You cannot access this note");
-//         }
+        if (!jam) {
+            throw createHttpError(404, "jam not found");
+        }
 
-//         note.title = newTitle;
-//         note.text = newText;
+        console.log("Jam UserID: ", jam.userId)
 
-//         const updatedNote = await note.save();
+        if (!jam.userId.equals(authenticatedUserId)) {
+            throw createHttpError(401, "You cannot access this jam");
+        }
 
-//         res.status(200).json(updatedNote);
-//     } catch (error) {
-//         next(error);
-//     }
-// };
+        jam.todos = todos;
+        jam.completedTodos = completedTodos;
+        jam.battled = battled;
+
+        const updatedJam = await jam.save();
+        res.status(200).json(updatedJam);
+    } catch (error) {
+        next(error);
+    }
+};
 
 // export const deleteNote: RequestHandler = async (req, res, next) => {
 //     const noteId = req.params.noteId;

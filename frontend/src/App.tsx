@@ -4,7 +4,6 @@ import InputField from './components/InputField';
 import { Todo } from './model';
 import TodoList from './components/TodoList';
 import {DragDropContext, DropResult} from 'react-beautiful-dnd'
-// import { constants } from 'buffer';
 
 
 const App: React.FC = () => {

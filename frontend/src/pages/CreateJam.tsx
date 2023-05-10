@@ -12,14 +12,22 @@ const CreateJam: React.FC = () => {
   };
 
 
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
     axios.post("/jams", {
-      title : jamName     
+      title : jamName,
+      todos: [],
+      completedTodos: [],
+      battled: [],
     })
-    .then(() => {
-      navigate('/')
+    .then((res) => {
+      // console.log("ends here")
+      const newJamId = res.data._id;
+      navigate(`/jam/${newJamId}`);
+      // navigate(`/jam/${newJamId}`, { state: { id: newJamId } });
+      // Push newly created props from here to "Jam.tsx"
     }, (error) => {
       console.log(error);
     });

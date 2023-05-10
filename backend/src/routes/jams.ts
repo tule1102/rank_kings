@@ -8,8 +8,8 @@ router.get("/", requiresAuth, JamController.getJams);
 
 router.post("/", JamController.createJam);
 
-// router.post("/login", UserController.login);
+router.put("/updateJam", JamController.updateJam);
 
-// router.post("/logout", UserController.logout);
+router.get("/:id", JamController.getJam);
 
 export default router;
