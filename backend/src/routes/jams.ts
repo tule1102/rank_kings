@@ -12,4 +12,6 @@ router.put("/updateJam", JamController.updateJam);
 
 router.get("/:id", JamController.getJam);
 
+router.delete("/:id", JamController.deleteJam)
+
 export default router;

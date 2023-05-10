@@ -6,12 +6,11 @@ import TodoList from '../components/TodoList';
 import {DragDropContext, DropResult} from 'react-beautiful-dnd'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { response } from 'express';
-
 
 const Jam: React.FC = () => {
 
     const [todo, setTodo] = useState<string>(""); 
+    const [title, setTitle] = useState<string>(""); 
     const [todos, setTodos] = useState<Todo[]>([]);
     const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
     const [battled, setBattled] = useState<Todo[]>([]);
@@ -23,6 +22,7 @@ const Jam: React.FC = () => {
         try {
             const response = await axios.get(`/jams/${id}`)
             const data = response.data;
+            setTitle(data.title)
             setTodo(data.todo);
             setTodos(data.todos)
             setCompletedTodos(data.completedTodos)
@@ -123,7 +123,7 @@ const Jam: React.FC = () => {
     
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
-        <span className="heading">Rank Kings</span>
+        <span className="heading">{title}</span>
         <button onClick={saveJam}>Save</button>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList

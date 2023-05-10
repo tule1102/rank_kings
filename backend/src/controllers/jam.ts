@@ -138,31 +138,31 @@ export const updateJam: RequestHandler<UpdateNoteParams> = async (req, res, next
     }
 };
 
-// export const deleteNote: RequestHandler = async (req, res, next) => {
-//     const noteId = req.params.noteId;
-//     const authenticatedUserId = req.session.userId;
+export const deleteJam: RequestHandler = async (req, res, next) => {
+    const jamId = req.params.id;
+    const authenticatedUserId = req.session.userId;
 
-//     try {
-//         assertIsDefined(authenticatedUserId);
+    try {
+        assertIsDefined(authenticatedUserId);
 
-//         if (!mongoose.isValidObjectId(noteId)) {
-//             throw createHttpError(400, "Invalid note id");
-//         }
+        if (!mongoose.isValidObjectId(jamId)) {
+            throw createHttpError(400, "Invalid note id");
+        }
 
-//         const note = await NoteModel.findById(noteId).exec();
+        const jam = await JamModel.findById(jamId).exec();
 
-//         if (!note) {
-//             throw createHttpError(404, "Note not found");
-//         }
+        if (!jam) {
+            throw createHttpError(404, "jam not found");
+        }
 
-//         if (!note.userId.equals(authenticatedUserId)) {
-//             throw createHttpError(401, "You cannot access this note");
-//         }
+        if (!jam.userId.equals(authenticatedUserId)) {
+            throw createHttpError(401, "You cannot access this jam");
+        }
 
-//         await note.remove();
+        await jam.deleteOne();
 
-//         res.sendStatus(204);
-//     } catch (error) {
-//         next(error);
-//     }
-// };
+        res.sendStatus(204);
+    } catch (error) {
+        next(error);
+    }
+};
