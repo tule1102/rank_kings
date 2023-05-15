@@ -6,6 +6,8 @@ const Registration: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -21,6 +23,14 @@ const Registration: React.FC = () => {
     setPassword(event.target.value);
   };
 
+  const handleFirstNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFirstName(event.target.value);
+  };
+
+  const handleLastNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setLastName(event.target.value);
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
      //axios
@@ -28,10 +38,12 @@ const Registration: React.FC = () => {
      axios.post("/users/signup", {
       username : username,
       email: email,
-      password : password
+      password: password,
+      firstName: firstName,
+      lastName: lastName
      })
     .then((response) => {
-      navigate('/login')
+      navigate('/')
     }, (error) => {
       console.log(error);
     });
@@ -55,6 +67,16 @@ const Registration: React.FC = () => {
         <label>
           Password:
           <input type="password" value={password} onChange={handlePasswordChange} />
+        </label>
+        <br />
+        <label>
+          First Name:
+          <input type="firstName" value={firstName} onChange={handleFirstNameChange} />
+        </label>
+        <br />
+        <label>
+          Last Name:
+          <input type="lastName" value={lastName} onChange={handleLastNameChange} />
         </label>
         <br />
         <button type="submit">Submit</button>

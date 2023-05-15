@@ -1,8 +1,13 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { User } from '../model';
 
-const Login: React.FC = () => {
+interface LoginProps {
+  onLoginSuccessful: (user: User) => void,
+}
+
+const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -24,6 +29,8 @@ const Login: React.FC = () => {
       password : password
      })
     .then((response) => {
+      console.log(response.data)
+      onLoginSuccessful(response.data)
       navigate('/dashboard')
     }, (error) => {
       console.log(error);

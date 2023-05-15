@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const CreateJam: React.FC = () => {
   const [jamName, setJamName] = useState<string>('')
+  const [prelimSize, setPrelimSize] = useState<number>(16)
 
   const navigate = useNavigate();
 
@@ -11,7 +12,9 @@ const CreateJam: React.FC = () => {
     setJamName(event.target.value);
   };
 
-
+  const handlePrelimSizeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setPrelimSize(Number(event.target.value));
+  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,7 +28,11 @@ const CreateJam: React.FC = () => {
     .then((res) => {
       // console.log("ends here")
       const newJamId = res.data._id;
-      navigate(`/jam/${newJamId}`);
+      navigate(`/jam/${newJamId}`, {
+        state: {
+          prelimSize: prelimSize
+        }
+      });
       // navigate(`/jam/${newJamId}`, { state: { id: newJamId } });
       // Push newly created props from here to "Jam.tsx"
     }, (error) => {
@@ -41,6 +48,16 @@ const CreateJam: React.FC = () => {
         <label>
           Jam Name:
           <input type="text" value={jamName} onChange={handleUsernameChange} />
+        </label>
+        <br />
+        <label>
+          Preliminary Size: Top 
+          <select value={prelimSize} onChange={handlePrelimSizeChange}>
+            <option value="4">4</option>
+            <option value="8">8</option>
+            <option value="16">16</option>
+            <option value="32">32</option>
+          </select>
         </label>
         <br />
         <button type="submit">Submit</button>

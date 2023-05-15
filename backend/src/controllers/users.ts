@@ -16,12 +16,16 @@ interface SignUpBody {
     username?: string,
     email?: string,
     password?: string,
+    firstName?: string,
+    lastName?: string
 }
 
 export const signUp: RequestHandler<unknown, unknown, SignUpBody, unknown> = async (req, res, next) => {
     const username = req.body.username;
     const email = req.body.email;
     const passwordRaw = req.body.password;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
 
     try {
         if (!username || !email || !passwordRaw) {
@@ -46,9 +50,11 @@ export const signUp: RequestHandler<unknown, unknown, SignUpBody, unknown> = asy
             username: username,
             email: email,
             password: passwordHashed,
+            firstName: firstName,
+            lastName: lastName
         });
 
-        req.session.userId = newUser._id;
+        // req.session.userId = newUser._id;
 
         res.status(201).json(newUser);
     } catch (error) {

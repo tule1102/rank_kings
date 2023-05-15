@@ -4,39 +4,43 @@ import axios from 'axios';
 import SingleJam from '../components/SingleJam';
 import { Jam } from '../model';
 
+// interface props {
+//   loggedInUser: User | null 
+// }
+
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userJam, setUserJam] = useState<Jam[]>([])
 
-  const handleLogout = (e: { preventDefault: () => void; }) => {
-    e.preventDefault()
+  // const handleLogout = (e: { preventDefault: () => void; }) => {
+  //   e.preventDefault()
     
-    axios.post("/users/logout")
-    .then(() => {
-      navigate('/login')
-    }, (error) => {
-      console.log(error);
-    });
-  }
+  //   axios.post("/users/logout")
+  //   .then(() => {
+  //     navigate('/login')
+  //   }, (error) => {
+  //     console.log(error);
+  //   });
+  // }
 
   useEffect (() => {
     axios.get("/jams")
     .then((e) => {
       setUserJam(e.data)
-           
     })
   }, [isAuthenticated])
 
   useEffect(() => {
-    axios.get("/users")
-      .then(() => {
-        setIsAuthenticated(true);
-      }, (error) => {
-        navigate('/login');
-      });
-
+      axios.get("/users")
+        .then(() => {
+          setIsAuthenticated(true);
+        }, (error) => {
+          navigate('/login');
+        });
   }, [navigate]);
+
+  
 
   if (!isAuthenticated) {
     return <div>Loading...</div>;
@@ -54,7 +58,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div>
-      <button onClick={handleLogout}>Logout</button>
+      {/* <button onClick={handleLogout}>Logout</button> */}
       <h1>Welcome to the Dashboard!</h1>
       <p>This is your dashboard. You can view your profile, settings, and more here.</p>
       <ul>

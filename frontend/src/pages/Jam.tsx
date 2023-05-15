@@ -5,16 +5,19 @@ import { Todo } from '../model';
 import TodoList from '../components/TodoList';
 import {DragDropContext, DropResult} from 'react-beautiful-dnd'
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 const Jam: React.FC = () => {
 
-    const [todo, setTodo] = useState<string>(""); 
-    const [title, setTitle] = useState<string>(""); 
-    const [todos, setTodos] = useState<Todo[]>([]);
-    const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
-    const [battled, setBattled] = useState<Todo[]>([]);
-    const { id } = useParams<{ id: string }>();
+  const [todo, setTodo] = useState<string>(""); 
+  const [title, setTitle] = useState<string>(""); 
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+  const [battled, setBattled] = useState<Todo[]>([]);
+  
+  const location = useLocation();
+  const [prelimSize, setPrelimSize] = useState<number>(location.state.prelimSize); // default to 4
+  const { id } = useParams<{ id: string }>();
     
 
     useEffect(() => {
@@ -31,8 +34,8 @@ const Jam: React.FC = () => {
             console.error(error);
         } 
     }
-    loadJams();
-    },[])
+        loadJams();
+    },[id, prelimSize])
   
     const handleAdd = (e: React.FormEvent) => {
       e.preventDefault()
@@ -44,26 +47,22 @@ const Jam: React.FC = () => {
     }
 
     const saveJam = () => {
-      axios.put("/jams/updateJam", {
-        todos: todos,
-        completedTodos: completedTodos,
-        battled: battled,
-        id: id
-      })
-      .then(() => {
-        console.log("Success objectID: ", id)
-      }, (error) => {
-        console.log("Error objectID: ", id)
-
-        console.log(error)
-      })
+      try {
+        axios.put("/jams/updateJam", {
+          todos: todos,
+          completedTodos: completedTodos,
+          battled: battled,
+          id: id
+        }).then(() => {
+          alert("Competitors have been saved successfully!")
+        })
+      } catch (err) {
+        console.error(err)
+      }
 ;    }
   
     const onDragEnd = (result: DropResult) => {
-      const { destination, source } = result;
-  
-      console.log(result);
-  
+      const { destination, source } = result;  
       if (!destination) {
         return;
       }
@@ -100,7 +99,7 @@ const Jam: React.FC = () => {
           finishedBattling.splice(destination.index, 0, add);
         }
   
-        if (completedTodos.length === 9) {
+        if (completedTodos.length === prelimSize + 1) {
           let removed = completedTodos.pop(); // remove last element from completedTodos
           if (removed) { // check if removed is defined
             let haveBattled = [removed, ...finishedBattling]; // add removed element to the start of the newTodos array
@@ -118,13 +117,25 @@ const Jam: React.FC = () => {
       
     };
     
+  const handlePrelimSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setPrelimSize(Number(e.target.value));
+      saveJam();
+    };
+
   return (
     <>
-    
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
         <span className="heading">{title}</span>
         <button onClick={saveJam}>Save</button>
+        <div className="options-container">
+            <label>Top: {prelimSize}</label>
+            {/* <select id="number-of-options" value={prelimSize} onChange={handlePrelimSize}>
+              <option value="4">4</option>
+              <option value="8">8</option>
+              <option value="16">16</option>
+            </select> */}
+          </div>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList
           todos={todos}

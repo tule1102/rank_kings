@@ -11,3 +11,10 @@ export interface Jam {
     title: string;
     userId: string;
 }
+
+export interface User {
+    username: string,
+    email: string,
+    firstName: string,
+    lastName: string
+}
