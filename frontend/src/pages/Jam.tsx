@@ -117,10 +117,10 @@ const Jam: React.FC = () => {
       
     };
     
-  const handlePrelimSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setPrelimSize(Number(e.target.value));
-      saveJam();
-    };
+  // const handlePrelimSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //     setPrelimSize(Number(e.target.value));
+  //     saveJam();
+  //   };
 
   return (
     <>
