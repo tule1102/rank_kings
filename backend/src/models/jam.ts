@@ -2,6 +2,7 @@ import { InferSchemaType, model, Schema } from "mongoose";
 
 const jamSchema = new Schema({
     title: { type: String, required: true, unique: true },
+    prelimSize: { type: Number, required: true },
     // userId: { type: Schema.Types.ObjectId, ref: "User" ,required: true, select: false },
     userId: { type: Schema.Types.ObjectId, ref: "User" ,required: true },
     // userId: {type: String},

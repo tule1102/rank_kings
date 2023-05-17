@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
         .then(() => {
           setIsAuthenticated(true);
         }, (error) => {
-          navigate('/login');
+          navigate('/');
         });
   }, [navigate]);
 

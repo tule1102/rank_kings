@@ -24,15 +24,12 @@ const CreateJam: React.FC = () => {
       todos: [],
       completedTodos: [],
       battled: [],
+      prelimSize: prelimSize
     })
     .then((res) => {
       // console.log("ends here")
       const newJamId = res.data._id;
-      navigate(`/jam/${newJamId}`, {
-        state: {
-          prelimSize: prelimSize
-        }
-      });
+      navigate(`/jam/${newJamId}`);
       // navigate(`/jam/${newJamId}`, { state: { id: newJamId } });
       // Push newly created props from here to "Jam.tsx"
     }, (error) => {
@@ -51,7 +48,7 @@ const CreateJam: React.FC = () => {
         </label>
         <br />
         <label>
-          Preliminary Size: Top 
+          Preliminary Size: Top  
           <select value={prelimSize} onChange={handlePrelimSizeChange}>
             <option value="4">4</option>
             <option value="8">8</option>

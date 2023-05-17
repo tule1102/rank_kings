@@ -14,9 +14,8 @@ const Jam: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
   const [battled, setBattled] = useState<Todo[]>([]);
-  
   const location = useLocation();
-  const [prelimSize, setPrelimSize] = useState<number>(location.state.prelimSize); // default to 4
+  const [prelimSize, setPrelimSize] = useState<number>(16); // default to 4
   const { id } = useParams<{ id: string }>();
     
 
@@ -30,12 +29,13 @@ const Jam: React.FC = () => {
             setTodos(data.todos)
             setCompletedTodos(data.completedTodos)
             setBattled(data.battled)
+            setPrelimSize(data.prelimSize)
         } catch (error) {
             console.error(error);
         } 
     }
         loadJams();
-    },[id, prelimSize])
+    },[id])
   
     const handleAdd = (e: React.FormEvent) => {
       e.preventDefault()
@@ -128,14 +128,7 @@ const Jam: React.FC = () => {
       <div className="App">
         <span className="heading">{title}</span>
         <button onClick={saveJam}>Save</button>
-        <div className="options-container">
-            <label>Top: {prelimSize}</label>
-            {/* <select id="number-of-options" value={prelimSize} onChange={handlePrelimSize}>
-              <option value="4">4</option>
-              <option value="8">8</option>
-              <option value="16">16</option>
-            </select> */}
-          </div>
+        <br />
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList
           todos={todos}
@@ -144,6 +137,7 @@ const Jam: React.FC = () => {
           setCompletedTodos={setCompletedTodos}
           battled={battled}
           setBattled={setBattled}
+          prelimSize={prelimSize}
         />
       </div>
     </DragDropContext>

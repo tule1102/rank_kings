@@ -10,6 +10,7 @@ interface props {
   completedTodos: Array<Todo>;
   setBattled: React.Dispatch<React.SetStateAction<Array<Todo>>>;
   battled: Array<Todo>;
+  prelimSize: number;
 }
 
 const TodoList: React.FC<props> = ({
@@ -18,7 +19,8 @@ const TodoList: React.FC<props> = ({
   completedTodos,
   setCompletedTodos,
   battled,
-  setBattled
+  setBattled,
+  prelimSize
 }) => {
   return (
     <div className="container">
@@ -52,7 +54,7 @@ const TodoList: React.FC<props> = ({
               snapshot.isDraggingOver ? "dragcomplete" : "remove"
             }`}
           >
-            <span className="todos__heading">Ranked</span>
+            <span className="todos__heading">Top {prelimSize}</span>
             {completedTodos?.map((todo, index) => (
               <SingleTodo
                 index={index}

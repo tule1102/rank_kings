@@ -52,10 +52,12 @@ interface CreateJamBody {
     todos: Array<any>,
     completedTodos: Array<any>,
     battled: Array<any> 
+    prelimSize: number
 }
 
 export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown> = async (req, res, next) => {
     const title = req.body.title;
+    const prelimSize = req.body.prelimSize;
     const todos = req.body.todos;
     const completedTodos = req.body.completedTodos;
     const battled = req.body.battled;
@@ -74,6 +76,7 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
             todos: todos,
             completedTodos: completedTodos,
             battled: battled,
+            prelimSize: prelimSize
         });
 
         res.status(201).json(newJam);
