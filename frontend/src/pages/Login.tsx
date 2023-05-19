@@ -47,25 +47,21 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
   };
 
   return (
-    <div className='App App-text'>
-      <div className='form-box'>
-        <div className='inside-form-box'>
-          <h2>Login</h2>
-          <form onSubmit={handleSubmit} className='App-text'>
-            <label>
-              <input type="text" value={username} onChange={handleUsernameChange} placeholder='Username'/>
-            </label>
-            <br />
-            <label>
-              <input type="password" value={password} onChange={handlePasswordChange} placeholder='Password'/>
-            </label>
-            <br />
-            <Button type="submit" variant='info' >Submit</Button>
-            {/* <Button className='btn-flat'><Link to="/registration">Register</Link></Button> */}
-            <Button type= "submit" className='info' onClick={handleOnclick}>Register</Button>
+    <div className='full-screen-container'>
+      <div className='login-container'>
+          <h1 className='login-title'>Login</h1>
+          <form onSubmit={handleSubmit} className="form">
+            <div className='input-group'>
+              <label>Username</label>
+                <input type="text" value={username} onChange={handleUsernameChange} />
+              <label>Password</label>
+                <input type="password" value={password} onChange={handlePasswordChange} />
+            </div>
+            <button type="submit" className='login-button' >Submit</button>
+            {/* <button className='btn-flat'><Link to="/registration">Register</Link></button> */}
+            {/* <button type= "submit" className='login-button' onClick={handleOnclick}>Register</button> */}
+            <Link to="/registration">Not yet signed up? Register here!</Link>
             </form>
-
-        </div>
       </div>
     </div>
   );
