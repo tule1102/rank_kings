@@ -26,7 +26,7 @@ const NavBar = ({ loggedInUser, onLogoutSuccessful }: NavBarProps) => {
     };
 
     return (
-        <Navbar bg="primary" variant="light" expand="sm" sticky="top">
+        <Navbar bg="primary" variant="dark" expand="sm" sticky="top">
             <Container>
             {/* <Navbar.Brand as={Link} to={loggedInUser ? '/dashboard' : '/'}>
                 Rank Kings

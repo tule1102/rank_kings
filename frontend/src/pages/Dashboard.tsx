@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import SingleJam from '../components/SingleJam';
 import { Jam } from '../model';
+import "../App.css"
 
 // interface props {
 //   loggedInUser: User | null 
@@ -57,7 +58,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="App App-text">
       {/* <button onClick={handleLogout}>Logout</button> */}
       <h1>Welcome to the Dashboard!</h1>
       <p>This is your dashboard. You can view your profile, settings, and more here.</p>
