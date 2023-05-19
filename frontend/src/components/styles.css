@@ -61,7 +61,7 @@
   .todos__single {
     display: flex;
     border-radius: 5px;
-    padding: 20px;
+    padding: 5px;
     margin-top: 15px;
     /* background-image: url("https://img.freepik.com/free-photo/crumpled-yellow-paper-background-close-up_60487-2390.jpg?size=626&ext=jpg"); */
     background-image: url("https://img.freepik.com/free-vector/glowing-rays-background-orange-color_1017-26180.jpg");
@@ -97,7 +97,7 @@
   }
 
   .todos__heading {
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
     color: white;
   }
@@ -113,9 +113,9 @@
   
   .todos__single--text {
     flex: 1;
-    padding: 5px;
+    padding: 10px;
     border: none;
-    font-size: 20px;
+    font-size: 12px;
   }
   
   .todos__single--text:focus {
