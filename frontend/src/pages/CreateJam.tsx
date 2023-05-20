@@ -39,16 +39,14 @@ const CreateJam: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Create Jam</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Jam Name:
+    <div className='full-screen-container'>
+      <div className='login-container'>
+      <h2 className='login-title'>Create Jam</h2>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className='input-group'>
+        <label> Jam Name </label>
           <input type="text" value={jamName} onChange={handleUsernameChange} />
-        </label>
-        <br />
-        <label>
-          Preliminary Size: Top  
+        <label> Preliminary Size: Top  
           <select value={prelimSize} onChange={handlePrelimSizeChange}>
             <option value="4">4</option>
             <option value="8">8</option>
@@ -56,9 +54,10 @@ const CreateJam: React.FC = () => {
             <option value="32">32</option>
           </select>
         </label>
-        <br />
-        <button type="submit">Submit</button>
+        <button className='login-button' type="submit">Submit</button>
+        </div>
       </form>
+      </div>
     </div>
   )
 }

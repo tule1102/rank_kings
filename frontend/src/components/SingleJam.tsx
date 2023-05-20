@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import "../App.css"
+import { Jam } from '../model';
+import axios from 'axios';
 
 interface props {
   title: string;
@@ -8,11 +12,13 @@ interface props {
 
 
 const SingleJam: React.FC<props> = ({title, jamKey}) => {
+  
   return (
     <>
-    <p>
+    <h5>
       <Link to={`/jam/${jamKey}`}>{title}</Link>    
-    </p>
+    </h5>
+    
     </>
   )
 }

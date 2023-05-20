@@ -1,29 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import SingleJam from '../components/SingleJam';
 import { Jam } from '../model';
-import "../App.css"
+import ListGroup from 'react-bootstrap/ListGroup';
 
-// interface props {
-//   loggedInUser: User | null 
-// }
+
+import "../App.css"
+import { Button } from 'react-bootstrap';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userJam, setUserJam] = useState<Jam[]>([])
 
-  // const handleLogout = (e: { preventDefault: () => void; }) => {
-  //   e.preventDefault()
-    
-  //   axios.post("/users/logout")
-  //   .then(() => {
-  //     navigate('/login')
-  //   }, (error) => {
-  //     console.log(error);
-  //   });
-  // }
 
   useEffect (() => {
     axios.get("/jams")
@@ -58,27 +48,42 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="App App-text">
-      {/* <button onClick={handleLogout}>Logout</button> */}
-      <h1>Welcome to the Dashboard!</h1>
-      <p>This is your dashboard. You can view your profile, settings, and more here.</p>
-      <ul>
-        <li><Link to="/createJam">Create a new Jam</Link></li>
-        
-        <h2>Prelim list</h2>
+    <div className='full-screen-container'>
+      <div className='login-container'>
+        <h1 className='login-title'>Welcome to the Dashboard!</h1>
+          <div className='dashboard-container'>
+            <button className='login-button' type="submit" onClick={() => {navigate('/createJam')}}>Create Jam</button>
+                <ul>       
+                    <h2 className='jam-title'>Jam List</h2>
+                    {userJam?.map((jamData) => (
+                    <ListGroup className="">
+                      <ListGroup.Item variant='secondary'>
 
-        {userJam?.map((jamData) => (
-         <li>
-           <SingleJam
-            title={jamData.title}
-            jamKey={jamData._id}
-            />
-            <button onClick={() => handleDelete(jamData._id)}>Delete</button>
-         </li> 
-        ))
+                        <SingleJam
+                            title={jamData.title}
+                            jamKey={jamData._id}
+                          />
+                          <Button variant="danger" className='delete-button' 
+                            onClick={() => handleDelete(jamData._id)}>
+                            Delete
+                          </Button>
+                      </ListGroup.Item>
+                    </ListGroup>
+                      // <li>
+                        // <SingleJam
+                        //   title={jamData.title}
+                        //   jamKey={jamData._id}
+                        // />
+                        // <button className='login-button' 
+                        //   onClick={() => handleDelete(jamData._id)}>
+                        //   Delete
+                        // </button>
+                      // </li> 
 
-        }
-      </ul>
+                    ))}
+                </ul>
+          </div>
+      </div>
     </div>
   );
 };

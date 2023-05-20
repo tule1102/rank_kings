@@ -55,30 +55,30 @@ const Registration: React.FC = () => {
   return (
     <div className='full-screen-container'>
       <div className='login-container'>
-      <h1 className='login-title'>Registration</h1>
-        <form onSubmit={handleSubmit} className='form'>
-          <div className='input-group'>
-            <label> Username: </label>
-              <input type="text" value={username} onChange={handleUsernameChange} />
-            <label>
-              Email:
-            </label>
-              <input type="email" value={email} onChange={handleEmailChange} />
-            <label>
-              Password:
-            </label>
-              <input type="password" value={password} onChange={handlePasswordChange} />
-            <label>
-              First Name:
-            </label>
-              <input type="firstName" value={firstName} onChange={handleFirstNameChange} />
-            <label>
-              Last Name:
-            </label>
-              <input type="lastName" value={lastName} onChange={handleLastNameChange} />
-            <button className='login-button' type="submit">Submit</button>
-            <Link to="/">Back to Login</Link>
-        </div>
+        <h1 className='login-title'>Registration</h1>
+          <form onSubmit={handleSubmit} className='form'>
+            <div className='input-group'>
+              <label> Username </label>
+                <input type="text" value={username} onChange={handleUsernameChange} />
+              <label>
+                Email
+              </label>
+                <input type="email" value={email} onChange={handleEmailChange} />
+              <label>
+                Password
+              </label>
+                <input type="password" value={password} onChange={handlePasswordChange} />
+              <label>
+                First Name
+              </label>
+                <input type="firstName" value={firstName} onChange={handleFirstNameChange} />
+              <label>
+                Last Name
+              </label>
+                <input type="lastName" value={lastName} onChange={handleLastNameChange} />
+              <button className='login-button' type="submit">Submit</button>
+              <Link to="/">Back to Login</Link>
+          </div>
         </form>
       </div>
     </div>
