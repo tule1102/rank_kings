@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+
 import axios from 'axios';
 import SingleJam from '../components/SingleJam';
 import { Jam } from '../model';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Stack from 'react-bootstrap/Stack';
+
 
 
 import "../App.css"
@@ -53,35 +57,23 @@ const Dashboard: React.FC = () => {
         <h1 className='login-title'>Welcome to the Dashboard!</h1>
           <div className='dashboard-container'>
             <button className='login-button' type="submit" onClick={() => {navigate('/createJam')}}>Create Jam</button>
-                <ul>       
-                    <h2 className='jam-title'>Jam List</h2>
-                    {userJam?.map((jamData) => (
-                    <ListGroup className="">
-                      <ListGroup.Item variant='secondary'>
+                <h2 className='jam-title'>Jam List</h2>
+                <Stack gap={3}>
 
-                        <SingleJam
-                            title={jamData.title}
-                            jamKey={jamData._id}
-                          />
-                          <Button variant="danger" className='delete-button' 
-                            onClick={() => handleDelete(jamData._id)}>
-                            Delete
-                          </Button>
-                      </ListGroup.Item>
-                    </ListGroup>
-                      // <li>
-                        // <SingleJam
-                        //   title={jamData.title}
-                        //   jamKey={jamData._id}
-                        // />
-                        // <button className='login-button' 
-                        //   onClick={() => handleDelete(jamData._id)}>
-                        //   Delete
-                        // </button>
-                      // </li> 
-
-                    ))}
-                </ul>
+                {userJam?.map((jamData) => (
+                <>
+                    <SingleJam
+                        title={jamData.title}
+                        jamKey={jamData._id}
+                        />
+                      <div className="vr" />
+                      <Button variant="danger" className='delete-button' 
+                        onClick={() => handleDelete(jamData._id)}>
+                        Delete
+                      </Button>
+                </>
+              ))}
+              </Stack> 
           </div>
       </div>
     </div>

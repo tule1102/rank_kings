@@ -6,6 +6,7 @@ import TodoList from '../components/TodoList';
 import {DragDropContext, DropResult} from 'react-beautiful-dnd'
 import axios from 'axios';
 import { useParams, useLocation } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const Jam: React.FC = () => {
 
@@ -117,32 +118,27 @@ const Jam: React.FC = () => {
       
     };
     
-  // const handlePrelimSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //     setPrelimSize(Number(e.target.value));
-  //     saveJam();
-  //   };
-
   return (
-    <>
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="App">
-        <span className="heading">{title}</span>
-        <button onClick={saveJam}>Save</button>
-        <br />
-        <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
-        <TodoList
-          todos={todos}
-          setTodos={setTodos}
-          completedTodos={completedTodos}
-          setCompletedTodos={setCompletedTodos}
-          battled={battled}
-          setBattled={setBattled}
-          prelimSize={prelimSize}
-        />
-      </div>
-    </DragDropContext>
-    
-    </>
+    <div className='jam-full-screen-container'>
+      <div className='login-containter'>
+    <div>
+        <h1 className="login-title">{title}</h1>
+          <Button onClick={saveJam}>Save</Button>
+    </div>
+            <DragDropContext onDragEnd={onDragEnd}>
+                <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+                  <TodoList
+                    todos={todos}
+                    setTodos={setTodos}
+                    completedTodos={completedTodos}
+                    setCompletedTodos={setCompletedTodos}
+                    battled={battled}
+                    setBattled={setBattled}
+                    prelimSize={prelimSize}
+                    />
+            </DragDropContext>
+        </div>
+    </div>
   )
 }
 

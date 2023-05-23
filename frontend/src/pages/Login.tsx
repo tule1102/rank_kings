@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { User } from '../model';
 import "../App.css";
-import Button from 'react-bootstrap/Button';
 
 
 interface LoginProps {
@@ -16,9 +15,6 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
 
   const navigate = useNavigate();
 
-  const handleOnclick = () => {
-    navigate('/registration');
-  }
 
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -58,9 +54,7 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
                 <input type="password" value={password} onChange={handlePasswordChange} />
             </div>
             <button type="submit" className='login-button' >Submit</button>
-            {/* <button className='btn-flat'><Link to="/registration">Register</Link></button> */}
-            {/* <button type= "submit" className='login-button' onClick={handleOnclick}>Register</button> */}
-            <Link to="/registration">Not yet signed up? Register here!</Link>
+            <Link to="/registration">Sign Up Here!</Link>
             </form>
       </div>
     </div>
