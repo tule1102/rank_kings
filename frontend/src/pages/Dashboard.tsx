@@ -66,7 +66,6 @@ const Dashboard: React.FC = () => {
                         title={jamData.title}
                         jamKey={jamData._id}
                         />
-                      <div className="vr" />
                       <Button variant="danger" className='delete-button' 
                         onClick={() => handleDelete(jamData._id)}>
                         Delete
