@@ -1,9 +1,10 @@
 import React from 'react'
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NavBarLoggedInView from './NavBarLoggedInView';
 import NavBarLoggedOutView from './NavBarLoggedOutView';
 import { User } from "../model"
+import "../App.css"
 
 interface NavBarProps {
     loggedInUser: User | null
@@ -32,7 +33,7 @@ const NavBar = ({ loggedInUser, onLogoutSuccessful }: NavBarProps) => {
                 Rank Kings
             </Navbar.Brand> */}
           
-                <Navbar.Brand onClick={handleBrandClick}>
+                <Navbar.Brand className="nav-bar-brand"onClick={handleBrandClick}>
                     {currentPath.startsWith('/jam') ? "Dashboard" : "Rank Kings"}
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="main-navbar" />

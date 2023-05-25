@@ -14,8 +14,12 @@
   --error-hsl: 0, 60%, 50%;
 }
 
-body {
+/* body {
   margin: 0;
+} */
+
+.nav-bar-brand {
+  cursor: pointer;
 }
 
 .full-screen-container {
@@ -31,13 +35,14 @@ body {
 
 .jam-full-screen-container {
   background-image: url("https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg");
-  height: 100vh;
-  width: 100vw;
+  height: 100vh; 
+  width: 100vw; 
   background-size: cover;
   background-position: center;
   /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  /* justify-content: center;  */
+  /*align-items: center; */
+ 
 }
 
 .login-container {
@@ -58,19 +63,18 @@ body {
   font-weight: normal;
 }
 
-.title-containter {
-  margin: 0;
-  flex: center;
+.title-container {
   display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
+  margin-bottom: 10px;
 }
 
+
 .jam-title{
-  margin: 0;
+  margin-bottom: 10px; 
   color: white;
-  text-align: left;
-  font-size: 1.5rem;
-  font-weight: normal;
 }
 
 .form {

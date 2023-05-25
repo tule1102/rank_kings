@@ -120,25 +120,27 @@ const Jam: React.FC = () => {
     
   return (
     <div className='jam-full-screen-container'>
-      <div className='login-containter'>
-    <div>
-        <h1 className="login-title">{title}</h1>
+      <div className='title-container'>
+          <h1 className="jam-title">{title}</h1>
           <Button onClick={saveJam}>Save</Button>
+      </div>
+      <div>
+          <DragDropContext onDragEnd={onDragEnd}>
+              <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+                <TodoList
+                  todos={todos}
+                  setTodos={setTodos}
+                  completedTodos={completedTodos}
+                  setCompletedTodos={setCompletedTodos}
+                  battled={battled}
+                  setBattled={setBattled}
+                  prelimSize={prelimSize}
+                  />
+          </DragDropContext>
+      </div>
+
     </div>
-            <DragDropContext onDragEnd={onDragEnd}>
-                <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
-                  <TodoList
-                    todos={todos}
-                    setTodos={setTodos}
-                    completedTodos={completedTodos}
-                    setCompletedTodos={setCompletedTodos}
-                    battled={battled}
-                    setBattled={setBattled}
-                    prelimSize={prelimSize}
-                    />
-            </DragDropContext>
-        </div>
-    </div>
+    
   )
 }
 
