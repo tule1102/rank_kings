@@ -20,7 +20,7 @@ function App () {
   useEffect(() => {
 		async function fetchLoggedInUser() {
 			try {
-				const res = await axios.get("/users");
+				const res = await axios.get("https://rank-kings-be.onrender.com/users");
         const user = res.data
 				setLoggedInUser(user);
 			} catch (error) {
@@ -46,7 +46,7 @@ function App () {
           <Route path="/page_not_found" element={<NotFoundPage/>}/>
           {/* <Route path="/rankking" element={<App/>}/> */}
           <Route path="/registration" element={<Registration/>}/>
-          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/dashboard" element={<Dashboard />}/>
           <Route path="/createJam" element={<CreateJam />}/>
           <Route path="/jam/:id" element={<Jam />}/>
           {/* Catch-all route */}

@@ -19,7 +19,7 @@ const CreateJam: React.FC = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
-    axios.post("/jams", {
+    axios.post("https://rank-kings-be.onrender.com/jams", {
       title : jamName,
       todos: [],
       completedTodos: [],

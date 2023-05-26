@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-
 import axios from 'axios';
 import SingleJam from '../components/SingleJam';
-import { Jam } from '../model';
+import { Jam, User } from '../model';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Stack from 'react-bootstrap/Stack';
-
-
 
 import "../App.css"
 import { Button } from 'react-bootstrap';
@@ -20,17 +17,19 @@ const Dashboard: React.FC = () => {
 
 
   useEffect (() => {
-    axios.get("/jams")
+    axios.get("https://rank-kings-be.onrender.com/jams")
     .then((e) => {
       setUserJam(e.data)
     })
   }, [isAuthenticated])
 
   useEffect(() => {
-      axios.get("/users")
-        .then(() => {
+      axios.get("https://rank-kings-be.onrender.com/users")
+        .then((res) => {
+          console.log(res)
           setIsAuthenticated(true);
         }, (error) => {
+          console.log("Was there an error?", isAuthenticated)
           navigate('/');
         });
   }, [navigate]);
@@ -42,7 +41,7 @@ const Dashboard: React.FC = () => {
   }
 
   const handleDelete = (jamId: string) => {
-    axios.delete(`/jams/${jamId}`)
+    axios.delete(`https://rank-kings-be.onrender.com/jams/${jamId}`)
     .then(() => {
       // remove the deleted jam from the state
       setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));

@@ -13,6 +13,10 @@ import { requiresAuth } from "./middleware/auth";
 
 const app = express();
 
+// const corsOptions = {
+//     origin: "https://rank-kings-be.onrender.com", // Replace with your allowed origin
+//   };
+
 app.use(cors());
 
 app.use(morgan("dev"));
