@@ -17,7 +17,7 @@ const NavBarLoggedInView = ({ user, onLogoutSuccessful }: NavBarLoggedInViewProp
             await axios.post("https://rank-kings-be.onrender.com/users/logout")
             .then((res) => {
               onLogoutSuccessful();
-              navigate('https://rank-kings-be.onrender.com/')
+              navigate('/')
             }, (error) => {
               console.log(error);
             });

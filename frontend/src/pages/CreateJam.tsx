@@ -29,7 +29,7 @@ const CreateJam: React.FC = () => {
     .then((res) => {
       // console.log("ends here")
       const newJamId = res.data._id;
-      navigate(`https://rank-kings-be.onrender.com/jam/${newJamId}`);
+      navigate(`/jam/${newJamId}`);
       // navigate(`/jam/${newJamId}`, { state: { id: newJamId } });
       // Push newly created props from here to "Jam.tsx"
     }, (error) => {

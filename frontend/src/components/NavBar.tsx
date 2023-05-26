@@ -23,7 +23,7 @@ const NavBar = ({ loggedInUser, onLogoutSuccessful }: NavBarProps) => {
                 return;
             }
         }
-        navigate(loggedInUser ? 'https://rank-kings-be.onrender.com/dashboard' : 'https://rank-kings-be.onrender.com/');
+        navigate(loggedInUser ? '/dashboard' : '/');
     };
 
     return (

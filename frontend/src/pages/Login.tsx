@@ -34,7 +34,7 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
     .then((response) => {
       console.log(response.data)
       onLoginSuccessful(response.data)
-      navigate('https://rank-kings-be.onrender.com/dashboard')
+      navigate('/dashboard')
     }, (error) => {
       console.log(error);
       alert("Incorrect Credentials! Please try again.")

@@ -35,7 +35,7 @@ const Registration: React.FC = () => {
       password: password,
      })
     .then((response) => {
-      navigate('https://rank-kings-be.onrender.com/')
+      navigate('/')
     }, (error) => {
       console.log(error);
     });
