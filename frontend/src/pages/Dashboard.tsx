@@ -65,7 +65,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
       <div className='login-container'>
         <h1 className='login-title'>Welcome to the Dashboard!</h1>
           <div className='dashboard-container'>
-            <button className='login-button' type="submit" onClick={() => {navigate('/createJam')}}>Create Jam</button>
+            <button className='login-button' type="submit" onClick={() => {navigate('https://rank-kings-be.onrender.com/createJam')}}>Create Jam</button>
                 <h2 className='jam-title'>Jam List</h2>
                 <Stack gap={3}>
 
