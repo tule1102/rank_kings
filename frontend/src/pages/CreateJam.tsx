@@ -27,7 +27,7 @@ const CreateJam: React.FC = () => {
       prelimSize: prelimSize
     })
     .then((res) => {
-      // console.log("ends here")
+      console.log("created here")
       const newJamId = res.data._id;
       navigate(`/jam/${newJamId}`);
       // navigate(`/jam/${newJamId}`, { state: { id: newJamId } });
