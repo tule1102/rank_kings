@@ -10,7 +10,11 @@ import Stack from 'react-bootstrap/Stack';
 import "../App.css"
 import { Button } from 'react-bootstrap';
 
-const Dashboard: React.FC = () => {
+interface DashboardProps {
+  loggedInUser: User | null
+}
+
+const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userJam, setUserJam] = useState<Jam[]>([])
@@ -23,16 +27,22 @@ const Dashboard: React.FC = () => {
     })
   }, [isAuthenticated])
 
+  // useEffect(() => {
+  //     axios.get("https://rank-kings-be.onrender.com/users")
+  //       .then((res) => {
+  //         console.log(res)
+  //         setIsAuthenticated(true);
+  //       }, (error) => {
+  //         console.log("Was there an error?", isAuthenticated)
+  //         navigate('/');
+  //       });
+  // }, [navigate]);
+
   useEffect(() => {
-      axios.get("https://rank-kings-be.onrender.com/users")
-        .then((res) => {
-          console.log(res)
-          setIsAuthenticated(true);
-        }, (error) => {
-          console.log("Was there an error?", isAuthenticated)
-          navigate('/');
-        });
-  }, [navigate]);
+    if (loggedInUser) {
+      setIsAuthenticated(true)
+    }
+}, []);
 
   
 
