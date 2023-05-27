@@ -4,7 +4,7 @@ import { requiresAuth } from "../middleware/auth";
 
 const router = express.Router();
 
-router.get("/", requiresAuth, JamController.getJams);
+router.get("/", JamController.getJams);
 
 router.post("/", JamController.createJam);
 
