@@ -64,7 +64,9 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
     const authenticatedUserId = req.session.userId;
 
     try {
+        console.log("about to Authenticate the user")
         assertIsDefined(authenticatedUserId);
+        console.log("user was authenticated.")
 
         if (!title) {
             throw createHttpError(400, "Jam must have a title");
@@ -79,6 +81,7 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
             prelimSize: prelimSize
         });
 
+        console.log("jam.ts Line 82, it means the jam was created. ")
         res.status(201).json(newJam);
     } catch (error) {
         // console.error(error)
