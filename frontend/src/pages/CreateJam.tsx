@@ -33,7 +33,7 @@ const CreateJam: React.FC = () => {
       // navigate(`/jam/${newJamId}`, { state: { id: newJamId } });
       // Push newly created props from here to "Jam.tsx"
     }, (error) => {
-      console.log(error);
+      console.log("Could not create", error);
     });
 
   };
