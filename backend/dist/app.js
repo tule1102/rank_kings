@@ -29,7 +29,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const validateEnv_1 = __importDefault(require("./util/validateEnv"));
 const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
 // import notesRoutes from "./routes/notes";
 const user_1 = __importDefault(require("./routes/user"));
 const jams_1 = __importDefault(require("./routes/jams"));
@@ -43,10 +42,10 @@ const app = (0, express_1.default)();
 //     origin: "https://rank-kings-be.onrender.com", // Replace with your allowed origin
 //   };
 // app.use(cors());
-app.use((0, cors_1.default)({
-    origin: 'https://rank-kings-fe.onrender.com',
-    credentials: true
-}));
+// app.use(cors({
+//     origin: 'https://rank-kings-fe.onrender.com',
+//     credentials: true
+//   }));
 app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.json());
 app.use((0, express_session_1.default)({
