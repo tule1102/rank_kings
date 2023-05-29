@@ -27,7 +27,7 @@ const corsOptions = {
     origin: "https://rank-kings-fe.onrender.com"
   };
   
-  app.use(cors(corsOptions));
+app.use(cors(corsOptions));
   
 
 app.use(morgan("dev"));
@@ -40,6 +40,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 60 * 60 * 1000,
+        secure: true
     },
     rolling: true,
     store: MongoStore.create({
