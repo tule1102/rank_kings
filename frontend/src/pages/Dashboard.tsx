@@ -25,7 +25,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
     .then((e) => {
       setUserJam(e.data)
     })
-  }, [isAuthenticated, loggedInUser])
+  }, [isAuthenticated])
 
   // useEffect(() => {
   //     axios.get("https://rank-kings-be.onrender.com/users")
@@ -43,7 +43,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
     if (loggedInUser) {
       setIsAuthenticated(true)
     }
-}, [navigate]);
+}, [navigate, loggedInUser]);
 
   
 

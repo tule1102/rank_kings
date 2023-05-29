@@ -25,7 +25,7 @@ const CreateJam: React.FC = () => {
       completedTodos: [],
       battled: [],
       prelimSize: prelimSize
-    })
+    }, { withCredentials: true })
     .then((res) => {
       console.log("created here")
       const newJamId = res.data._id;

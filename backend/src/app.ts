@@ -17,7 +17,9 @@ const app = express();
 //     origin: "https://rank-kings-be.onrender.com", // Replace with your allowed origin
 //   };
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({ credentials: true }));
+
 
 app.use(morgan("dev"));
 
