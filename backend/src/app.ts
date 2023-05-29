@@ -18,8 +18,11 @@ const app = express();
 //   };
 
 // app.use(cors());
-app.use(cors({ credentials: true }));
-
+app.use(cors({
+    origin: 'https://rank-kings-fe.onrender.com',
+    credentials: true
+  }));
+  
 
 app.use(morgan("dev"));
 
