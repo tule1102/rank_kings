@@ -57,8 +57,8 @@ app.use((0, express_session_1.default)({
         mongoUrl: validateEnv_1.default.MONGO_CONNECTION_STRING
     }),
 }));
-app.use("/users", user_1.default);
 app.use("/jams", auth_1.requiresAuth, jams_1.default);
+app.use("/users", user_1.default);
 app.use((req, res, next) => {
     next((0, http_errors_1.default)(404, "Endpoint not found"));
 });
