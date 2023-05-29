@@ -28,9 +28,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const JamController = __importStar(require("../controllers/jam"));
-const auth_1 = require("../middleware/auth");
 const router = express_1.default.Router();
-router.get("/", auth_1.requiresAuth, JamController.getJams);
+router.get("/", JamController.getJams);
 router.post("/", JamController.createJam);
 router.put("/updateJam", JamController.updateJam);
 router.get("/:id", JamController.getJam);

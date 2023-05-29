@@ -59,7 +59,9 @@ const createJam = (req, res, next) => __awaiter(void 0, void 0, void 0, function
     const battled = req.body.battled;
     const authenticatedUserId = req.session.userId;
     try {
+        console.log("about to Authenticate the user");
         (0, assertIsDefined_1.assertIsDefined)(authenticatedUserId);
+        console.log("user was authenticated.");
         if (!title) {
             throw (0, http_errors_1.default)(400, "Jam must have a title");
         }
@@ -71,6 +73,7 @@ const createJam = (req, res, next) => __awaiter(void 0, void 0, void 0, function
             battled: battled,
             prelimSize: prelimSize
         });
+        console.log("jam.ts Line 82, it means the jam was created. ");
         res.status(201).json(newJam);
     }
     catch (error) {
