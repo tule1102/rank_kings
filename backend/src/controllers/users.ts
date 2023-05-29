@@ -70,6 +70,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
             throw createHttpError(400, "Parameters missing");
         }
 
+        console.log("looking for user")
         const user = await UserModel.findOne({ username: username }).select("+password +email").exec();
 
         if (!user) {
@@ -83,6 +84,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
         }
 
         req.session.userId = user._id;
+        console.log("User has been found!")
         res.status(201).json(user);
         
     } catch (error) {

@@ -63,6 +63,7 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
         if (!username || !password) {
             throw (0, http_errors_1.default)(400, "Parameters missing");
         }
+        console.log("looking for user");
         const user = yield user_1.default.findOne({ username: username }).select("+password +email").exec();
         if (!user) {
             throw (0, http_errors_1.default)(401, "Invalid credentials");
@@ -72,6 +73,7 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
             throw (0, http_errors_1.default)(401, "Invalid credentials");
         }
         req.session.userId = user._id;
+        console.log("User has been found!");
         res.status(201).json(user);
     }
     catch (error) {
