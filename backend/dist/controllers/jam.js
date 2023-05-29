@@ -19,6 +19,7 @@ const jam_1 = __importDefault(require("../models/jam"));
 const assertIsDefined_1 = require("../util/assertIsDefined");
 const getJams = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const authenticatedUserId = req.session.userId;
+    console.log("authenticatedUserId is found: ", authenticatedUserId);
     try {
         (0, assertIsDefined_1.assertIsDefined)(authenticatedUserId);
         const jams = yield jam_1.default.find({ userId: authenticatedUserId }).exec();
