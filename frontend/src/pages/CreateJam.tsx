@@ -1,8 +1,13 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { User } from '../model';
 
-const CreateJam: React.FC = () => {
+interface CreateJamProps {
+  loggedInUser: User | null
+}
+
+const CreateJam: React.FC<CreateJamProps> = ({loggedInUser}) => {
   const [jamName, setJamName] = useState<string>('')
   const [prelimSize, setPrelimSize] = useState<number>(16)
 

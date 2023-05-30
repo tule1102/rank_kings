@@ -47,7 +47,7 @@ function App () {
           {/* <Route path="/rankking" element={<App/>}/> */}
           <Route path="/registration" element={<Registration/>}/>
           <Route path="/dashboard" element={<Dashboard loggedInUser={loggedInUser}  />}/>
-          <Route path="/createJam" element={<CreateJam />}/>
+          <Route path="/createJam" element={<CreateJam loggedInUser={loggedInUser}/>}/>
           <Route path="/jam/:id" element={<Jam />}/>
           {/* Catch-all route */}
           <Route path="*" element={<Navigate to="/page_not_found" replace />} />

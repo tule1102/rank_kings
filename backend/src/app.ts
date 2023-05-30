@@ -48,8 +48,10 @@ app.use(session({
     }),
 }));
 
-app.use("/jams", requiresAuth, jamRoutes);
+// app.use("/jams", requiresAuth, jamRoutes);
 app.use("/users", userRoutes);
+app.use("/jams", jamRoutes);
+
 
 app.use((req, res, next) => {
     next(createHttpError(404, "Endpoint not found"));

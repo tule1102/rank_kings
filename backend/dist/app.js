@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const validateEnv_1 = __importDefault(require("./util/validateEnv"));
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 // import notesRoutes from "./routes/notes";
 const user_1 = __importDefault(require("./routes/user"));
 const jams_1 = __importDefault(require("./routes/jams"));
@@ -36,7 +37,6 @@ const morgan_1 = __importDefault(require("morgan"));
 const http_errors_1 = __importStar(require("http-errors"));
 const express_session_1 = __importDefault(require("express-session"));
 const connect_mongo_1 = __importDefault(require("connect-mongo"));
-const auth_1 = require("./middleware/auth");
 const app = (0, express_1.default)();
 // const corsOptions = {
 //     origin: "https://rank-kings-be.onrender.com", // Replace with your allowed origin
@@ -46,6 +46,10 @@ const app = (0, express_1.default)();
 //     origin: 'https://rank-kings-fe.onrender.com',
 //     credentials: true
 //   }));
+const corsOptions = {
+    origin: "https://rank-kings-fe.onrender.com"
+};
+app.use((0, cors_1.default)(corsOptions));
 app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.json());
 app.use((0, express_session_1.default)({
@@ -54,14 +58,16 @@ app.use((0, express_session_1.default)({
     saveUninitialized: false,
     cookie: {
         maxAge: 60 * 60 * 1000,
+        secure: true
     },
     rolling: true,
     store: connect_mongo_1.default.create({
         mongoUrl: validateEnv_1.default.MONGO_CONNECTION_STRING
     }),
 }));
-app.use("/jams", auth_1.requiresAuth, jams_1.default);
+// app.use("/jams", requiresAuth, jamRoutes);
 app.use("/users", user_1.default);
+app.use("/jams", jams_1.default);
 app.use((req, res, next) => {
     next((0, http_errors_1.default)(404, "Endpoint not found"));
 });
