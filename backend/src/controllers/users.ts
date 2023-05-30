@@ -85,7 +85,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
         }
 
         req.session.userId = user._id;
-        console.log("User has been found! in login function")
+        console.log("Session Id" + req.session.userId)
         res.status(201).json(user);
         
     } catch (error) {

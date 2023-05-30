@@ -65,7 +65,9 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
     const authenticatedUserId = req.session.userId;
 
     try {
-        console.log("about to Authenticate the user")
+        console.log("about to Authenticate the user", req.session.userId)
+        console.log("about2 to Authenticate the user", req.session.id)
+
         assertIsDefined(authenticatedUserId);
         console.log("user was authenticated.")
 
