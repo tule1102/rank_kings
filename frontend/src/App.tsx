@@ -20,7 +20,7 @@ function App () {
   useEffect(() => {
 		async function fetchLoggedInUser() {
 			try {
-				const res = await axios.get("https://rank-kings-be.onrender.com/users");
+				const res = await axios.get("/users");
         const user = res.data
 				setLoggedInUser(user);
 			} catch (error) {

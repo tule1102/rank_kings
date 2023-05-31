@@ -27,7 +27,7 @@ const corsOptions = {
     origin: "https://rank-kings-fe.onrender.com"
   };
   
-app.use(cors(corsOptions));
+app.use(cors());
   
 
 app.use(morgan("dev"));

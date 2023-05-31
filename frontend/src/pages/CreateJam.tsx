@@ -24,7 +24,7 @@ const CreateJam: React.FC<CreateJamProps> = ({loggedInUser}) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
-    axios.post("https://rank-kings-be.onrender.com/jams", {
+    axios.post("/jams", {
       title : jamName,
       todos: [],
       completedTodos: [],

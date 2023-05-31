@@ -29,7 +29,7 @@ const Registration: React.FC = () => {
     event.preventDefault();
      //axios
 
-     axios.post("https://rank-kings-be.onrender.com/users/signup", {
+     axios.post("/users/signup", {
       username : username,
       email: email,
       password: password,
