@@ -21,7 +21,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
 
 
   useEffect (() => {
-    axios.get("/jams")
+    axios.get("https://rank-kings-fe.onrender.com/jams")
     .then((e) => {
       setUserJam(e.data)
     })
@@ -52,7 +52,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   }
 
   const handleDelete = (jamId: string) => {
-    axios.delete(`/jams/${jamId}`)
+    axios.delete(`https://rank-kings-fe.onrender.com/jams/${jamId}`)
     .then(() => {
       // remove the deleted jam from the state
       setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));
