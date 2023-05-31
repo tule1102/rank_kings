@@ -23,7 +23,7 @@ const Jam: React.FC = () => {
     useEffect(() => {
       async function loadJams() {
         try {
-            const response = await axios.get(`/jams/${id}`)
+            const response = await axios.get(`https://rank-kings-be.onrender.com/jams/${id}`)
             const data = response.data;
             setTitle(data.title)
             setTodo(data.todo);
@@ -49,7 +49,7 @@ const Jam: React.FC = () => {
 
     const saveJam = () => {
       try {
-        axios.put("https://rank-kings-fe.onrender.com/jams/updateJam", {
+        axios.put("https://rank-kings-be.onrender.com/jams/updateJam", {
           todos: todos,
           completedTodos: completedTodos,
           battled: battled,
