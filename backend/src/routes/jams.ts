@@ -1,6 +1,5 @@
 import express from "express";
 import * as JamController from "../controllers/jam";
-import { requiresAuth } from "../middleware/auth";
 
 const router = express.Router();
 
