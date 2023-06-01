@@ -17,6 +17,7 @@ const http_errors_1 = __importDefault(require("http-errors"));
 const user_1 = __importDefault(require("../models/user"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const getAuthenticatedUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("users.ts getAuthenticatedUser");
     try {
         const user = yield user_1.default.findById(req.session.userId).select("+email").exec();
         console.log("user has been found here Line 9 users.ts");
