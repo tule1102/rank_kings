@@ -23,6 +23,7 @@ function App () {
 			try {
 				const res = await axios.get("https://rank-kings-be.onrender.com/users");
         const user = res.data
+        console.log("From App.tsx, AuthenticatedUser is ", user);
 				setLoggedInUser(user);
 			} catch (error) {
 				console.error(error);

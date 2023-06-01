@@ -4,10 +4,8 @@ import UserModel from "../models/user";
 import bcrypt from "bcrypt";
 
 export const getAuthenticatedUser: RequestHandler = async (req, res, next) => {
-    console.log("users.ts getAuthenticatedUser")
     try {
         const user = await UserModel.findById(req.session.userId).select("+email").exec();
-        console.log("user has been found here Line 9 users.ts")
         res.status(200).json(user);
     } catch (error) {
         next(error);
@@ -87,7 +85,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
         }
 
         req.session.userId = user._id;
-        console.log("Found User and Session Id " + req.session.userId)
+        console.log("From login endpoint" + req.session.userId)
         res.status(201).json(user);
         
     } catch (error) {
