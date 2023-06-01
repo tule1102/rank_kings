@@ -74,7 +74,7 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
             throw (0, http_errors_1.default)(401, "Invalid credentials");
         }
         req.session.userId = user._id;
-        console.log("Session Id" + req.session.userId);
+        console.log("Found User and Session Id " + req.session.userId);
         res.status(201).json(user);
     }
     catch (error) {

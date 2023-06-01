@@ -21,6 +21,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
 
 
   useEffect (() => {
+    console.log("loggedInUser is ", loggedInUser)
     axios.get("https://rank-kings-be.onrender.com/jams")
     .then((e) => {
       setUserJam(e.data)
