@@ -29,7 +29,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
     }).catch((error) => {
       console.error("An error occurred:", error);
     })
-  }, [navigate])
+  }, [isAuthenticated])
 
   // useEffect(() => {
   //     axios.get("https://rank-kings-be.onrender.com/users")
@@ -42,13 +42,13 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   //       });
   // }, [navigate]);
 
-//   useEffect(() => {
-//     console.log("is user authenteicated at all? " + JSON.stringify(loggedInUser))
-//     if (loggedInUser) {
-//       setIsAuthenticated(true)
-//       console.log("Set Authenticated is ", isAuthenticated)
-//     }
-// }, [navigate, loggedInUser]);
+  useEffect(() => {
+    console.log("is user authenteicated at all? " + JSON.stringify(loggedInUser))
+    if (loggedInUser) {
+      setIsAuthenticated(true)
+      console.log("Set Authenticated is ", isAuthenticated)
+    }
+}, [navigate]);
 
   
 

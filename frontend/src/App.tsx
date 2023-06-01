@@ -19,6 +19,7 @@ function App () {
 
   useEffect(() => {
 		async function fetchLoggedInUser() {
+      console.log("App.tsx line 22")
 			try {
 				const res = await axios.get("https://rank-kings-be.onrender.com/users");
         const user = res.data
