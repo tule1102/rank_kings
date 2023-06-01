@@ -46,11 +46,11 @@ app.use("/users", userRoutes);
 app.use("/jams", requiresAuth, jamRoutes);
 // app.use("/jams", jamRoutes);
 
-const corsOptions = {
-    origin: "https://rank-kings-fe.onrender.com"
-  };
+// const corsOptions = {
+//     origin: "https://rank-kings-fe.onrender.com"
+//   };
   
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     next(createHttpError(404, "Endpoint not found"));
