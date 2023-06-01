@@ -17,18 +17,18 @@ function App () {
 
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
 
-  useEffect(() => {
-		async function fetchLoggedInUser() {
-			try {
-				const res = await axios.get("https://rank-kings-be.onrender.com/users");
-        const user = res.data
-				setLoggedInUser(user);
-			} catch (error) {
-				console.error(error);
-			}
-		}
-		fetchLoggedInUser();
-	}, [])
+  // useEffect(() => {
+	// 	async function fetchLoggedInUser() {
+	// 		try {
+	// 			const res = await axios.get("https://rank-kings-be.onrender.com/users");
+  //       const user = res.data
+	// 			setLoggedInUser(user);
+	// 		} catch (error) {
+	// 			console.error(error);
+	// 		}
+	// 	}
+	// 	fetchLoggedInUser();
+	// }, [])
 
   return (
     <BrowserRouter>
