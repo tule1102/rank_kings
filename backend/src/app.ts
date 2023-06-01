@@ -23,12 +23,7 @@ const app = express();
 //     credentials: true
 //   }));
 
-const corsOptions = {
-    origin: "https://rank-kings-fe.onrender.com"
-  };
-  
-app.use(cors(corsOptions));
-  
+
 
 app.use(morgan("dev"));
 
@@ -51,6 +46,11 @@ app.use("/users", userRoutes);
 app.use("/jams", requiresAuth, jamRoutes);
 // app.use("/jams", jamRoutes);
 
+const corsOptions = {
+    origin: "https://rank-kings-fe.onrender.com"
+  };
+  
+app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     next(createHttpError(404, "Endpoint not found"));

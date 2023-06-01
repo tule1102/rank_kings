@@ -21,10 +21,10 @@ function App () {
 		async function fetchLoggedInUser() {
       console.log("App.tsx line 22")
 			try {
-				const res = await axios.get("https://rank-kings-be.onrender.com/users");
-        const user = res.data
+				const user = await axios.get("https://rank-kings-be.onrender.com/users");
+        // const user = res.data
         console.log("From App.tsx, AuthenticatedUser is ", user);
-				setLoggedInUser(user);
+				setLoggedInUser(user.data);
 			} catch (error) {
 				console.error(error);
 			}
