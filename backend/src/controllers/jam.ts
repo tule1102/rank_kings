@@ -6,7 +6,7 @@ import { assertIsDefined } from "../util/assertIsDefined";
 
 
 export const getJams: RequestHandler = async (req, res, next) => {
-
+    console.log("getJams page")
     const authenticatedUserId = req.session.userId;
     console.log("authenticatedUserId is found: ", authenticatedUserId)
     

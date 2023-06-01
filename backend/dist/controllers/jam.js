@@ -18,6 +18,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const jam_1 = __importDefault(require("../models/jam"));
 const assertIsDefined_1 = require("../util/assertIsDefined");
 const getJams = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("getJams page");
     const authenticatedUserId = req.session.userId;
     console.log("authenticatedUserId is found: ", authenticatedUserId);
     try {

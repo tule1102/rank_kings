@@ -32,7 +32,7 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
       password : password
      })
     .then((response) => {
-      console.log(response.data)
+      console.log("response data is ", response.data)
       onLoginSuccessful(response.data)
       navigate('/dashboard')
     }, (error) => {

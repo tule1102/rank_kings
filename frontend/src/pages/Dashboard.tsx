@@ -24,6 +24,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
     console.log("loggedInUser is ", loggedInUser)
     axios.get("https://rank-kings-be.onrender.com/jams")
     .then((e) => {
+      console.log("e.data ", e.data)
       setUserJam(e.data)
     }).catch((error) => {
       console.error("An error occurred:", error);
