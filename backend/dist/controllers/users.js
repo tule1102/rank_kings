@@ -66,6 +66,7 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
         }
         console.log("looking for user");
         const user = yield user_1.default.findOne({ username: username }).select("+password +email").exec();
+        console.log("User is ", JSON.stringify(user));
         if (!user) {
             throw (0, http_errors_1.default)(401, "Invalid credentials");
         }

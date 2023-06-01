@@ -73,6 +73,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
 
         console.log("looking for user")
         const user = await UserModel.findOne({ username: username }).select("+password +email").exec();
+        console.log("User is ", JSON.stringify(user))
 
         if (!user) {
             throw createHttpError(401, "Invalid credentials");
