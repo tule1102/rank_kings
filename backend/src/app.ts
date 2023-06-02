@@ -41,11 +41,11 @@ app.use(session({
     }),
 }));
 
-app.use(cors({
-    origin: 'https://rank-kings-fe.onrender.com',
-    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-    credentials: true
-  }));
+// app.use(cors({
+//     origin: 'https://rank-kings-fe.onrender.com',
+//     methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+//     credentials: true
+//   }));
 
 
 app.use("/users", userRoutes);
