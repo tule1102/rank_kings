@@ -17,21 +17,39 @@ function App () {
 
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
 
+  // useEffect(() => {
+	// 	async function fetchLoggedInUser() {
+  //     console.log("App.tsx line 22")
+	// 		try {
+	// 			const res = await axios.get("https://rank-kings-be.onrender.com/users");
+  //       const user = await res.data
+  //       console.log("From App.tsx, AuthenticatedUser is ", user);
+	// 			setLoggedInUser(user.data);
+	// 		} catch (error) {
+  //       console.log("did not work App.tsx", loggedInUser)
+	// 			console.error(error);
+	// 		}
+	// 	}
+	// 	fetchLoggedInUser();
+	// }, [])
+
   useEffect(() => {
-		async function fetchLoggedInUser() {
+    async function fetchLoggedInUser() {
       console.log("App.tsx line 22")
-			try {
-				const res = await axios.get("https://rank-kings-be.onrender.com/users");
-        const user = await res.data
+      try {
+        const res = await fetch("https://rank-kings-be.onrender.com/users");
+        const data = await res.json();
+        const user = data.data;
         console.log("From App.tsx, AuthenticatedUser is ", user);
-				setLoggedInUser(user.data);
-			} catch (error) {
+        setLoggedInUser(user);
+      } catch (error) {
         console.log("did not work App.tsx", loggedInUser)
-				console.error(error);
-			}
-		}
-		fetchLoggedInUser();
-	}, [])
+        console.error(error);
+      }
+    }
+    fetchLoggedInUser();
+  }, []);
+  
 
   return (
     <BrowserRouter>
