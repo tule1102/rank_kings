@@ -20,29 +20,29 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   const [userJam, setUserJam] = useState<Jam[]>([])
 
 
-  useEffect (() => {
-    console.log("loggedInUser is ", loggedInUser)
-    axios.get("https://rank-kings-be.onrender.com/jams")
-    .then((e) => {
-      console.log("DATA FROM GET /JAMS ", e.data)
-      setUserJam(e.data)
-    }).catch((error) => {
-      console.error("An error occurred:", error);
-    })
-  }, [isAuthenticated])
-
   // useEffect (() => {
   //   console.log("loggedInUser is ", loggedInUser)
-  //   fetch("https://rank-kings-be.onrender.com/jams")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("DATA FROM GET /JAMS ", data)
-  //       setUserJam(data)
-  //     })
-  //     .catch((error) => {
-  //       console.error("An error occurred:", error);
-  //     })
+  //   axios.get("https://rank-kings-be.onrender.com/jams")
+  //   .then((e) => {
+  //     console.log("DATA FROM GET /JAMS ", e.data)
+  //     setUserJam(e.data)
+  //   }).catch((error) => {
+  //     console.error("An error occurred:", error);
+  //   })
   // }, [isAuthenticated])
+
+  useEffect (() => {
+    console.log("loggedInUser is ", loggedInUser)
+    fetch("https://rank-kings-be.onrender.com/jams")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("DATA FROM GET /JAMS ", data)
+        setUserJam(data)
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      })
+  }, [isAuthenticated])
 
 
   useEffect(() => {

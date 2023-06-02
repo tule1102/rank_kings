@@ -30,7 +30,7 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
     axios.post("https://rank-kings-be.onrender.com/users/login", {
       username : username,
       password : password
-     })
+     }, {withCredentials: true})
     .then((response) => {
       console.log("response data is ", response.data)
       onLoginSuccessful(response.data)
