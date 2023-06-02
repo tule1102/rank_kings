@@ -23,6 +23,13 @@ const app = express();
 //     credentials: true
 //   }));
 
+app.use(
+    cors({
+      origin: "https://rank-kings-fe.onrender.com",
+      methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+      credentials: true,
+    })
+  );
 
 app.use(morgan("dev"));
 
@@ -58,13 +65,7 @@ app.use("/jams", requiresAuth, jamRoutes);
 //     origin: "https://rank-kings-fe.onrender.com"
 //   };
   
-app.use(
-    cors({
-      origin: "https://rank-kings-fe.onrender.com",
-      methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
-      credentials: true,
-    })
-  );
+
 
 // app.use(cors(corsOptions));
 
