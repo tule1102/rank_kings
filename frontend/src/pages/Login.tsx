@@ -41,8 +41,8 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
   //   });
   // };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  // const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
     
   // axios.post('https://rank-kings-be.onrender.com/users/login', {
   //       username : username,
@@ -58,21 +58,37 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
   //     });
   // };
 
-   fetch('https://rank-kings-be.onrender.com/users/login', {
+// };
+
+const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+
+  fetch('https://rank-kings-be.onrender.com/users/login', {
     method: 'POST',
     body: JSON.stringify({
-      username : username,
-      password : password
-    })
+      username: username,
+      password: password
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
-  .then(async (response) => {
-    console.log("response data is ", response.json())
-    onLoginSuccessful(await response.json())
-    navigate('/dashboard')
-  }, (error) => {
-    console.log(error);
-    alert("Incorrect Credentials! Please try again.")
-  });
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Incorrect Credentials! Please try again.');
+      }
+    })
+    .then((data) => {
+      console.log('response data is ', data);
+      onLoginSuccessful(data);
+      navigate('/dashboard');
+    })
+    .catch((error) => {
+      console.error(error);
+      alert(error.message);
+    });
 };
 
 
