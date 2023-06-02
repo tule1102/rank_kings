@@ -26,6 +26,7 @@ function App () {
         console.log("From App.tsx, AuthenticatedUser is ", user);
 				setLoggedInUser(user.data);
 			} catch (error) {
+        console.log("did not work App.tsx", loggedInUser)
 				console.error(error);
 			}
 		}

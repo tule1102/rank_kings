@@ -24,13 +24,35 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
     setPassword(event.target.value);
   };
 
+  // const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+    
+  //   axios.post("https://rank-kings-be.onrender.com/users/login", {
+  //     username : username,
+  //     password : password
+  //    } )
+  //   .then((response) => {
+  //     console.log("response data is ", response.data)
+  //     onLoginSuccessful(response.data)
+  //     navigate('/dashboard')
+  //   }, (error) => {
+  //     console.log(error);
+  //     alert("Incorrect Credentials! Please try again.")
+  //   });
+  // };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
-    axios.post("https://rank-kings-be.onrender.com/users/login", {
+    axios.post('http://localhost:5001/login', {
       username : username,
       password : password
-     })
+    }, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    withCredentials: true
+  })
     .then((response) => {
       console.log("response data is ", response.data)
       onLoginSuccessful(response.data)
@@ -39,8 +61,10 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
       console.log(error);
       alert("Incorrect Credentials! Please try again.")
     });
-
   };
+
+
+  
 
   return (
     <div className='full-screen-container'>

@@ -43,7 +43,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   // }, [navigate]);
 
   useEffect(() => {
-    console.log("is user authenteicated at all? " + JSON.stringify(loggedInUser))
+    console.log("From Dashboard 2nd useEffect: " + JSON.stringify(loggedInUser))
     if (loggedInUser) {
       setIsAuthenticated(!isAuthenticated)
       console.log("Set Authenticated is ", isAuthenticated)

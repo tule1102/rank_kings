@@ -17,8 +17,12 @@ const http_errors_1 = __importDefault(require("http-errors"));
 const user_1 = __importDefault(require("../models/user"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const getAuthenticatedUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const authenticatedUserId = req.session.userId;
     try {
-        const user = yield user_1.default.findById(req.session.userId).select("+email").exec();
+        if (!authenticatedUserId) {
+            throw (0, http_errors_1.default)(401, "User is not authenticated!");
+        }
+        const user = yield user_1.default.findById(authenticatedUserId).select("+email").exec();
         res.status(200).json(user);
     }
     catch (error) {

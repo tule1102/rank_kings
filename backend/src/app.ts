@@ -22,7 +22,11 @@ const app = express();
 //     origin: 'https://rank-kings-fe.onrender.com',
 //     credentials: true
 //   }));
-
+app.use(cors({
+    origin: 'https://rank-kings-fe.onrender.com',
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+    credentials: true
+  }));
 
 
 app.use(morgan("dev"));
