@@ -25,7 +25,7 @@ const app = express();
 
 app.use(
     cors({
-      origin: "https://rank-kings-fe.onrender.com",
+      origin: ["https://rank-kings-fe.onrender.com", "https://localhost:3000"],
       methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
       credentials: true,
       allowedHeaders: ["Content-Type", "Authorization"], // Add any other required headers
@@ -43,6 +43,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         sameSite: false,
+        secure: false,
         maxAge: 60 * 60 * 1000,
         httpOnly: true,
     },

@@ -48,7 +48,7 @@ const app = (0, express_1.default)();
 //     credentials: true
 //   }));
 app.use((0, cors_1.default)({
-    origin: "https://rank-kings-fe.onrender.com",
+    origin: ["https://rank-kings-fe.onrender.com", "https://localhost:3000"],
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"], // Add any other required headers
@@ -61,6 +61,7 @@ app.use((0, express_session_1.default)({
     saveUninitialized: false,
     cookie: {
         sameSite: false,
+        secure: false,
         maxAge: 60 * 60 * 1000,
         httpOnly: true,
     },
