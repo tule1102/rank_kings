@@ -20,27 +20,30 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   const [userJam, setUserJam] = useState<Jam[]>([])
 
 
+  // useEffect (() => {
+  //   console.log("loggedInUser is ", loggedInUser)
+  //   axios.get("https://rank-kings-be.onrender.com/jams")
+  //   .then((e) => {
+  //     console.log("DATA FROM GET /JAMS ", e.data)
+  //     setUserJam(e.data)
+  //   }).catch((error) => {
+  //     console.error("An error occurred:", error);
+  //   })
+  // }, [isAuthenticated])
+
   useEffect (() => {
     console.log("loggedInUser is ", loggedInUser)
-    axios.get("https://rank-kings-be.onrender.com/jams")
-    .then((e) => {
-      console.log("DATA FROM GET /JAMS ", e.data)
-      setUserJam(e.data)
-    }).catch((error) => {
-      console.error("An error occurred:", error);
-    })
+    fetch("https://rank-kings-be.onrender.com/jams")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("DATA FROM GET /JAMS ", data)
+        setUserJam(data)
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      })
   }, [isAuthenticated])
 
-  // useEffect(() => {
-  //     axios.get("https://rank-kings-be.onrender.com/users")
-  //       .then((res) => {
-  //         console.log(res)
-  //         setIsAuthenticated(true);
-  //       }, (error) => {
-  //         console.log("Was there an error?", isAuthenticated)
-  //         navigate('/');
-  //       });
-  // }, [navigate]);
 
   useEffect(() => {
     console.log("From Dashboard 2nd useEffect: " + JSON.stringify(loggedInUser))
@@ -56,14 +59,26 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
     return <div>Loading...</div>;
   }
 
+  // const handleDelete = (jamId: string) => {
+  //   axios.delete(`https://rank-kings-fe.onrender.com/jams/${jamId}`)
+  //   .then(() => {
+  //     // remove the deleted jam from the state
+  //     setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));
+  //   }, (error) => {
+  //     console.log(error);
+  //   });
+  // }
   const handleDelete = (jamId: string) => {
-    axios.delete(`https://rank-kings-fe.onrender.com/jams/${jamId}`)
-    .then(() => {
-      // remove the deleted jam from the state
-      setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));
-    }, (error) => {
-      console.log(error);
-    });
+    fetch(`https://rank-kings-fe.onrender.com/jams/${jamId}`, {
+      method: 'DELETE'
+    })
+      .then(() => {
+        // remove the deleted jam from the state
+        setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
