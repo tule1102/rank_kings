@@ -23,14 +23,14 @@ const app = express();
 //     credentials: true
 //   }));
 
-// app.use(
-//     cors({
-//       origin: "https://rank-kings-fe.onrender.com",
-//       methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
-//       credentials: true,
-//       allowedHeaders: ["Content-Type", "Authorization"], // Add any other required headers
-//     })
-//   );
+app.use(
+    cors({
+      origin: "https://rank-kings-fe.onrender.com",
+      methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+      credentials: true,
+      allowedHeaders: ["Content-Type", "Authorization"], // Add any other required headers
+    })
+  );
   
 
 app.use(morgan("dev"));
