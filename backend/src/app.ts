@@ -22,11 +22,6 @@ const app = express();
 //     origin: 'https://rank-kings-fe.onrender.com',
 //     credentials: true
 //   }));
-app.use(cors({
-    origin: 'https://rank-kings-fe.onrender.com',
-    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-    credentials: true
-  }));
 
 
 app.use(morgan("dev"));
@@ -45,6 +40,13 @@ app.use(session({
         mongoUrl: env.MONGO_CONNECTION_STRING
     }),
 }));
+
+app.use(cors({
+    origin: 'https://rank-kings-fe.onrender.com',
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+    credentials: true
+  }));
+
 
 app.use("/users", userRoutes);
 app.use("/jams", requiresAuth, jamRoutes);
