@@ -33,7 +33,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
+        sameSite: false,
         maxAge: 60 * 60 * 1000,
+        httpOnly: true,
     },
     rolling: true,
     store: MongoStore.create({
@@ -56,6 +58,14 @@ app.use("/jams", requiresAuth, jamRoutes);
 //     origin: "https://rank-kings-fe.onrender.com"
 //   };
   
+app.use(
+    cors({
+      origin: "https://rank-kings-fe.onrender.com",
+      methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+      credentials: true,
+    })
+  );
+
 // app.use(cors(corsOptions));
 
 app.use((req, res, next) => {

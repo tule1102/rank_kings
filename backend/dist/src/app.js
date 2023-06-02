@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const validateEnv_1 = __importDefault(require("./util/validateEnv"));
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 // import notesRoutes from "./routes/notes";
 const user_1 = __importDefault(require("./routes/user"));
 const jams_1 = __importDefault(require("./routes/jams"));
@@ -53,7 +54,9 @@ app.use((0, express_session_1.default)({
     resave: false,
     saveUninitialized: false,
     cookie: {
+        sameSite: false,
         maxAge: 60 * 60 * 1000,
+        httpOnly: true,
     },
     rolling: true,
     store: connect_mongo_1.default.create({
@@ -71,6 +74,11 @@ app.use("/jams", auth_1.requiresAuth, jams_1.default);
 // const corsOptions = {
 //     origin: "https://rank-kings-fe.onrender.com"
 //   };
+app.use((0, cors_1.default)({
+    origin: "https://rank-kings-fe.onrender.com",
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    credentials: true,
+}));
 // app.use(cors(corsOptions));
 app.use((req, res, next) => {
     next((0, http_errors_1.default)(404, "Endpoint not found"));
