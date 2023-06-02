@@ -93,8 +93,8 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
 
         req.session.userId = user._id;
         console.log("From login endpoint" + req.session.userId)
-        res.status(201).json(req.session.id);
-        // res.status(201).json(user);
+        // res.status(201).json(req.session.id);
+        res.status(201).json(user);
 
         
     } catch (error) {
