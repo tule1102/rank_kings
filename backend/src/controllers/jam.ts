@@ -55,6 +55,7 @@ interface CreateJamBody {
     completedTodos: Array<any>,
     battled: Array<any> 
     prelimSize: number
+    userId: any
 }
 
 export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown> = async (req, res, next) => {

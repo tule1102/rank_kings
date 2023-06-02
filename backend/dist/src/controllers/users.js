@@ -78,6 +78,7 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
             throw (0, http_errors_1.default)(401, "Invalid credentials");
         }
         req.session.userId = user._id;
+        req.session.save();
         console.log("From login endpoint" + req.session.userId);
         // res.status(201).json(req.session.id);
         res.status(201).json(user);
