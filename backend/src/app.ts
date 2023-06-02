@@ -28,8 +28,10 @@ app.use(
       origin: "https://rank-kings-fe.onrender.com",
       methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
       credentials: true,
+      allowedHeaders: ["Content-Type", "Authorization"], // Add any other required headers
     })
   );
+  
 
 app.use(morgan("dev"));
 

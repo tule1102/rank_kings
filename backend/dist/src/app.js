@@ -51,6 +51,7 @@ app.use((0, cors_1.default)({
     origin: "https://rank-kings-fe.onrender.com",
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"], // Add any other required headers
 }));
 app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.json());
