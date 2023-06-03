@@ -17,23 +17,23 @@ function App () {
 
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
 
-  useEffect(() => {
-		async function fetchLoggedInUser() {
-			try {
-        console.log("before the useEffect")
-				const res = await axios.get("/users");
-        console.log("res is ", res);
-        const user = res.data
-        console.log("user is ", user)
-				setLoggedInUser(user.data);
-        console.log("user is set to ", loggedInUser)
-			} catch (error) {
-        console.log("No logged in Users App.tsx", loggedInUser)
-				console.error(error);
-			}
-		}
-		fetchLoggedInUser();
-	}, [])
+  // useEffect(() => {
+	// 	async function fetchLoggedInUser() {
+	// 		try {
+  //       console.log("before the useEffect")
+	// 			const res = await axios.get("/users");
+  //       console.log("res is ", res);
+  //       const user = res.data
+  //       console.log("user is ", user)
+	// 			setLoggedInUser(user.data);
+  //       console.log("user is set to ", loggedInUser)
+	// 		} catch (error) {
+  //       console.log("No logged in Users App.tsx", loggedInUser)
+	// 			console.error(error);
+	// 		}
+	// 	}
+	// 	fetchLoggedInUser();
+	// }, [])
 
   // useEffect(() => {
   //   async function fetchLoggedInUser() {
@@ -52,7 +52,26 @@ function App () {
   //   fetchLoggedInUser();
   // }, []);
   
-
+  useEffect(() => {
+    const fetchLoggedInUser = () => {
+      axios
+        .get("/users")
+        .then((res) => {
+          console.log("res is ", res);
+          const user = res.data;
+          console.log("user is ", user);
+          setLoggedInUser(user.data);
+          console.log("user is set to ", loggedInUser);
+        })
+        .catch((error) => {
+          console.log("No logged in Users App.tsx", loggedInUser);
+          console.error(error);
+        });
+    };
+  
+    fetchLoggedInUser();
+  }, []);
+  
   return (
     <BrowserRouter>
     <div>
