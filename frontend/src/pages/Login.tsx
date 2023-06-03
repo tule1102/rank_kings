@@ -44,7 +44,7 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
-    axios.post("https://rank-kings-be.onrender.com/users/login", {
+    axios.post("/users/login", {
       username : username,
       password : password
      })

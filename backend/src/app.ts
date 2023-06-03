@@ -13,24 +13,6 @@ import { requiresAuth } from "./middleware/auth";
 
 const app = express();
 
-// const corsOptions = {
-//     origin: "https://rank-kings-be.onrender.com", // Replace with your allowed origin
-//   };
-
-// app.use(cors());
-// app.use(cors({
-//     origin: 'https://rank-kings-fe.onrender.com',
-//     credentials: true
-//   }));
-
-// app.use(
-//     cors({
-//       origin: ["https://rank-kings-fe.onrender.com", "https://localhost:3000"],
-//       methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
-//       credentials: true,
-//       allowedHeaders: ["Content-Type", "Authorization"], // Add any other required headers
-//     })
-//   );
   
 
 app.use(morgan("dev"));
@@ -50,24 +32,16 @@ app.use(session({
     }),
 }));
 
-// app.use(cors({
-//     origin: 'https://rank-kings-fe.onrender.com',
-//     methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-//     credentials: true
-//   }));
+const corsOptions = {
+    origin: "https://rank-kings-fe.onrender.com"
+};
 
+app.use(cors(corsOptions));
 
 app.use("/users", userRoutes);
 app.use("/jams", requiresAuth, jamRoutes);
-// app.use("/jams", jamRoutes);
-
-// const corsOptions = {
-//     origin: "https://rank-kings-fe.onrender.com"
-//   };
-  
 
 
-// app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     next(createHttpError(404, "Endpoint not found"));
