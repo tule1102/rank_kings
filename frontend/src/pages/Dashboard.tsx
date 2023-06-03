@@ -21,10 +21,10 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
 
 
   useEffect (() => {
-    console.log("loggedInUser is ", loggedInUser)
+    // console.log("loggedInUser is ", loggedInUser)
     axios.get("/jams")
     .then((e) => {
-      console.log("DATA FROM GET /JAMS ", e.data)
+      // console.log("DATA FROM GET /JAMS ", e.data)
       setUserJam(e.data)
     }).catch((error) => {
       console.error("An error occurred:", error);
@@ -34,7 +34,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
 
 
   useEffect(() => {
-    console.log("From Dashboard 2nd useEffect: " + JSON.stringify(loggedInUser))
+    // console.log("From Dashboard 2nd useEffect: " + JSON.stringify(loggedInUser))
     if (loggedInUser) {
       setIsAuthenticated(!isAuthenticated)
       console.log("Set Authenticated is ", isAuthenticated)

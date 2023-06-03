@@ -19,14 +19,13 @@ function App () {
 
   useEffect(() => {
 		async function fetchLoggedInUser() {
-      console.log("App.tsx line 22")
 			try {
 				const res = await axios.get("/users");
-        const user = await res.data
+        const user = res.data
         console.log("From App.tsx, AuthenticatedUser is ", user);
 				setLoggedInUser(user.data);
 			} catch (error) {
-        console.log("did not work App.tsx", loggedInUser)
+        console.log("No logged in Users App.tsx", loggedInUser)
 				console.error(error);
 			}
 		}
