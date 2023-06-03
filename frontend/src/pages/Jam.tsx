@@ -23,7 +23,7 @@ const Jam: React.FC = () => {
     useEffect(() => {
       async function loadJams() {
         try {
-            const response = await axios.get(`https://rank-kings-be.onrender.com/jams/${id}`)
+            const response = await axios.get(`/jams/${id}`)
             const data = response.data;
             setTitle(data.title)
             setTodo(data.todo);

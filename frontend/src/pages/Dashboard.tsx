@@ -22,7 +22,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
 
   useEffect (() => {
     console.log("loggedInUser is ", loggedInUser)
-    axios.get("https://rank-kings-be.onrender.com/jams")
+    axios.get("/jams")
     .then((e) => {
       console.log("DATA FROM GET /JAMS ", e.data)
       setUserJam(e.data)
