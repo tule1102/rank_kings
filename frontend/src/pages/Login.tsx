@@ -52,8 +52,8 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
       console.log("response data is ", response.data)
       onLoginSuccessful(response.data)
       navigate('/dashboard')
-    }, (error) => {
-      console.log(error);
+    }).catch((error) => {
+      console.log("Error is", error);
       alert("Incorrect Credentials! Please try again.")
     });
   };
