@@ -29,7 +29,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const validateEnv_1 = __importDefault(require("./util/validateEnv"));
 const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
 // import notesRoutes from "./routes/notes";
 const user_1 = __importDefault(require("./routes/user"));
 const jams_1 = __importDefault(require("./routes/jams"));
@@ -47,10 +46,14 @@ const app = (0, express_1.default)();
 //     origin: 'https://rank-kings-fe.onrender.com',
 //     credentials: true
 //   }));
-const corsOptions = {
-    origin: "https://rank-kings-fe.onrender.com"
-};
-app.use((0, cors_1.default)(corsOptions));
+// app.use(
+//     cors({
+//       origin: ["https://rank-kings-fe.onrender.com", "https://localhost:3000"],
+//       methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+//       credentials: true,
+//       allowedHeaders: ["Content-Type", "Authorization"], // Add any other required headers
+//     })
+//   );
 app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.json());
 app.use((0, express_session_1.default)({
@@ -58,16 +61,28 @@ app.use((0, express_session_1.default)({
     resave: false,
     saveUninitialized: false,
     cookie: {
+        sameSite: false,
+        secure: false,
         maxAge: 60 * 60 * 1000,
+        httpOnly: true,
     },
     rolling: true,
     store: connect_mongo_1.default.create({
         mongoUrl: validateEnv_1.default.MONGO_CONNECTION_STRING
     }),
 }));
+// app.use(cors({
+//     origin: 'https://rank-kings-fe.onrender.com',
+//     methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+//     credentials: true
+//   }));
 app.use("/users", user_1.default);
 app.use("/jams", auth_1.requiresAuth, jams_1.default);
 // app.use("/jams", jamRoutes);
+// const corsOptions = {
+//     origin: "https://rank-kings-fe.onrender.com"
+//   };
+// app.use(cors(corsOptions));
 app.use((req, res, next) => {
     next((0, http_errors_1.default)(404, "Endpoint not found"));
 });

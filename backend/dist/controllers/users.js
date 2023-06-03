@@ -17,10 +17,12 @@ const http_errors_1 = __importDefault(require("http-errors"));
 const user_1 = __importDefault(require("../models/user"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const getAuthenticatedUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("users.ts getAuthenticatedUser");
+    const authenticatedUserId = req.session.userId;
     try {
-        const user = yield user_1.default.findById(req.session.userId).select("+email").exec();
-        console.log("user has been found here Line 9 users.ts");
+        if (!authenticatedUserId) {
+            throw (0, http_errors_1.default)(401, "User is not authenticated!");
+        }
+        const user = yield user_1.default.findById(authenticatedUserId).select("+email").exec();
         res.status(200).json(user);
     }
     catch (error) {
@@ -76,8 +78,15 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
             throw (0, http_errors_1.default)(401, "Invalid credentials");
         }
         req.session.userId = user._id;
-        console.log("Found User and Session Id " + req.session.userId);
-        res.status(201).json(user);
+        req.session.save((err) => __awaiter(void 0, void 0, void 0, function* () {
+            if (err) {
+                console.log("error:", err);
+                return next(err);
+            }
+        }));
+        console.log("From login endpoint" + req.session.userId);
+        // res.status(201).json(req.session.id);
+        yield res.status(201).json(user);
     }
     catch (error) {
         next(error);
