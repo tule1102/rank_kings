@@ -22,13 +22,14 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
 
   useEffect (() => {
     // console.log("loggedInUser is ", loggedInUser)
-    axios.get("/jams")
-    .then((e) => {
-      // console.log("DATA FROM GET /JAMS ", e.data)
-      setUserJam(e.data)
-    }).catch((error) => {
-      console.error("An error occurred:", error);
-    })
+    // axios.get("/jams")
+    // .then((e) => {
+    //   // console.log("DATA FROM GET /JAMS ", e.data)
+    //   setUserJam(e.data)
+    // }).catch((error) => {
+    //   console.error("An error occurred:", error);
+    // })
+    console.log("Nice Job")
   }, [isAuthenticated])
 
 
