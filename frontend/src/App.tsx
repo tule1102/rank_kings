@@ -26,6 +26,7 @@ function App () {
         const user = res.data
         console.log("user is ", user)
 				setLoggedInUser(user.data);
+        console.log("user is set to ", loggedInUser)
 			} catch (error) {
         console.log("No logged in Users App.tsx", loggedInUser)
 				console.error(error);
