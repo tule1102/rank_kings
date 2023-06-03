@@ -47,7 +47,11 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
     axios.post("/users/login", {
       username : username,
       password : password
-     })
+     }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     .then((response) => {
       console.log("response data is ", response.data)
       onLoginSuccessful(response.data)
