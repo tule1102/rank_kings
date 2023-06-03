@@ -41,26 +41,50 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
   //   });
   // };
 
+  // const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+    
+  //   axios.post("/users/login", {
+  //     username : username,
+  //     password : password
+  //    }, {
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   .then((response) => {
+  //     console.log("response data is ", response.data)
+  //     onLoginSuccessful(response.data)
+  //     navigate('/dashboard')
+  //   }).catch((error) => {
+  //     console.log("Error is", error);
+  //     alert("Incorrect Credentials! Please try again.")
+  //   });
+  // };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+  
     axios.post("/users/login", {
-      username : username,
-      password : password
-     }, {
+      username: username,
+      password: password
+    }, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
     .then((response) => {
-      console.log("response data is ", response.data)
-      onLoginSuccessful(response.data)
-      navigate('/dashboard')
-    }).catch((error) => {
+      const responseData = JSON.parse(response.data);
+      console.log("response data is ", responseData);
+      onLoginSuccessful(responseData);
+      navigate('/dashboard');
+    })
+    .catch((error) => {
       console.log("Error is", error);
-      alert("Incorrect Credentials! Please try again.")
+      alert("Incorrect Credentials! Please try again.");
     });
   };
+  
 
 //   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 //     event.preventDefault();
