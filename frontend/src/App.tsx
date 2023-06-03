@@ -37,7 +37,7 @@ function App () {
     async function fetchLoggedInUser() {
       console.log("App.tsx line 22")
       try {
-        const res = await fetch("https://rank-kings-be.onrender.com/users");
+        const res = await fetch("/users");
         const data = await res.json();
         const user = data.data;
         console.log("From App.tsx, AuthenticatedUser is ", user);
