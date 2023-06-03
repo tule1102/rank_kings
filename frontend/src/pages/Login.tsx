@@ -43,24 +43,30 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+  
     axios.post("/users/login", {
-      username : username,
-      password : password
-     }, {
+      username: username,
+      password: password
+    }, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
     .then((response) => {
-      console.log("response data is ", response.data)
-      onLoginSuccessful(response.data)
-      navigate('/dashboard')
-    }).catch((error) => {
+      console.log("response data is ", response.data);
+      onLoginSuccessful(response.data);
+      navigate('/dashboard');
+    })
+    .catch((error) => {
       console.log("Error is", error);
-      alert("Incorrect Credentials! Please try again.")
+      if (error.response) {
+        console.log("Error status:", error.response.status);
+        console.log("Error data:", error.response.data);
+      }
+      alert("Incorrect Credentials! Please try again.");
     });
   };
+  
 
 
   
