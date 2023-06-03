@@ -47,27 +47,27 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
     return <div>Loading...</div>;
   }
 
-  // const handleDelete = (jamId: string) => {
-  //   axios.delete(`https://rank-kings-fe.onrender.com/jams/${jamId}`)
-  //   .then(() => {
-  //     // remove the deleted jam from the state
-  //     setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));
-  //   }, (error) => {
-  //     console.log(error);
-  //   });
-  // }
   const handleDelete = (jamId: string) => {
-    fetch(`/jams/${jamId}`, {
-      method: 'DELETE'
-    })
-      .then(() => {
-        // remove the deleted jam from the state
-        setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    axios.delete(`/jams/${jamId}`)
+    .then(() => {
+      // remove the deleted jam from the state
+      setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));
+    }, (error) => {
+      console.log(error);
+    });
   }
+  // const handleDelete = (jamId: string) => {
+  //   fetch(`/jams/${jamId}`, {
+  //     method: 'DELETE'
+  //   })
+  //     .then(() => {
+  //       // remove the deleted jam from the state
+  //       setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   return (
     <div className='full-screen-container'>
