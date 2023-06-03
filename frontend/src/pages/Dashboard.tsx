@@ -31,18 +31,6 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
     })
   }, [isAuthenticated])
 
-  // useEffect (() => {
-  //   console.log("loggedInUser is ", loggedInUser)
-  //   fetch("https://rank-kings-be.onrender.com/jams")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("DATA FROM GET /JAMS ", data)
-  //       setUserJam(data)
-  //     })
-  //     .catch((error) => {
-  //       console.error("An error occurred:", error);
-  //     })
-  // }, [isAuthenticated])
 
 
   useEffect(() => {
@@ -69,7 +57,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   //   });
   // }
   const handleDelete = (jamId: string) => {
-    fetch(`https://rank-kings-fe.onrender.com/jams/${jamId}`, {
+    fetch(`/jams/${jamId}`, {
       method: 'DELETE'
     })
       .then(() => {
