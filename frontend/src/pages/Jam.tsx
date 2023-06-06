@@ -49,7 +49,7 @@ const Jam: React.FC = () => {
 
     const saveJam = () => {
       try {
-        axios.put("/jams/updateJam", {
+        axios.put("https://rank-kings-be.onrender.com/jams/updateJam", {
           todos: todos,
           completedTodos: completedTodos,
           battled: battled,

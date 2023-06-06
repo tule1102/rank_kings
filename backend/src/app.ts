@@ -33,7 +33,7 @@ app.use(session({
 }));
 
 const corsOptions = {
-    origin: "https://rank-kings-fe.onrender.com"
+    origin: "*"
 };
 
 app.use(cors(corsOptions));

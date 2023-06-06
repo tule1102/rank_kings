@@ -55,7 +55,7 @@ function App () {
   useEffect(() => {
     const fetchLoggedInUser = () => {
       axios
-        .get("/users")
+        .get("https://rank-kings-be.onrender.com/users")
         .then((res) => {
           console.log("res is ", res);
           const user = res.data;
