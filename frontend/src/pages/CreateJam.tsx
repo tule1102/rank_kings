@@ -10,7 +10,7 @@ interface CreateJamProps {
 const CreateJam: React.FC<CreateJamProps> = ({loggedInUser}) => {
   const [jamName, setJamName] = useState<string>('')
   const [prelimSize, setPrelimSize] = useState<number>(16)
-
+  
   const navigate = useNavigate();
 
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,8 @@ const CreateJam: React.FC<CreateJamProps> = ({loggedInUser}) => {
       todos: [],
       completedTodos: [],
       battled: [],
-      prelimSize: prelimSize 
+      prelimSize: prelimSize,
+      userId: loggedInUser?.userId
     })
     .then((res) => {
       console.log("created here")

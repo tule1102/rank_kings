@@ -64,7 +64,7 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
     const todos = req.body.todos;
     const completedTodos = req.body.completedTodos;
     const battled = req.body.battled;
-    const authenticatedUserId = req.session.userId;
+    const authenticatedUserId = req.body.userId;
 
     try {
         console.log("about to Authenticate the user", req.session.userId)
@@ -83,7 +83,8 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
             todos: todos,
             completedTodos: completedTodos,
             battled: battled,
-            prelimSize: prelimSize
+            prelimSize: prelimSize,
+            
         });
 
         console.log("jam.ts Line 82, it means the jam was created. ")
