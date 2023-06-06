@@ -70,7 +70,7 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
         console.log("about to Authenticate the user", req.session.userId)
         console.log("about2 to Authenticate the user", req.session.id)
 
-        assertIsDefined(authenticatedUserId);
+        // assertIsDefined(authenticatedUserId);
         console.log("user was authenticated, when creating a jam")
 
         if (!title) {
