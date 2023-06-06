@@ -2,10 +2,10 @@ import { RequestHandler } from "express";
 import createHttpError from "http-errors";
 
 export const requiresAuth: RequestHandler = (req, res, next) => {
-    console.log(" auth.ts req.session.userId is ", req.session.userId)
-    if (req.session.userId) {
+    console.log(" auth.ts req.body.userId is ", req.body.userId)
+    if (req.body.userId) {
         next();
     } else {
-        next(createHttpError(401, "User not authenticated"));
+        next(createHttpError(401, "User not authenticated from requiresAuth"));
     }
 };

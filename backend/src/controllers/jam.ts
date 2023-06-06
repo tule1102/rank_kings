@@ -71,7 +71,7 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
         console.log("about2 to Authenticate the user", req.session.id)
 
         assertIsDefined(authenticatedUserId);
-        console.log("user was authenticated.")
+        console.log("user was authenticated, when creating a jam")
 
         if (!title) {
             throw createHttpError(400, "Jam must have a title");

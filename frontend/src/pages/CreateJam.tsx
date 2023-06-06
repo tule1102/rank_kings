@@ -38,7 +38,7 @@ const CreateJam: React.FC<CreateJamProps> = ({loggedInUser}) => {
       navigate(`/jam/${newJamId}`);
       // navigate(`/jam/${newJamId}`, { state: { id: newJamId } });
       // Push newly created props from here to "Jam.tsx"
-    }, (error) => {
+    }).catch((error) => {
       console.log("Could not create a jam", error);
     });
 
