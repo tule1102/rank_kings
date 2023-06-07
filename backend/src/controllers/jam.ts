@@ -78,13 +78,12 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
         }
 
         const newJam = await JamModel.create({
-            userId: authenticatedUserId,
+            userId: "yoyo",
             title: title,
             todos: todos,
             completedTodos: completedTodos,
             battled: battled,
             prelimSize: prelimSize,
-            
         });
 
         console.log("jam.ts Line 82, it means the jam was created. ")
