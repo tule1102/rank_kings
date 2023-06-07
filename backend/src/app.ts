@@ -40,8 +40,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/users", userRoutes);
-app.use("/jams", requiresAuth, jamRoutes);
+app.use("/jams", jamRoutes);
 
+// app.use("/jams", requiresAuth, jamRoutes);
 
 
 app.use((req, res, next) => {
