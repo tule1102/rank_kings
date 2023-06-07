@@ -30,7 +30,6 @@ const CreateJam: React.FC<CreateJamProps> = ({loggedInUser}) => {
       completedTodos: [],
       battled: [],
       prelimSize: prelimSize,
-      userId: loggedInUser?.userId
     })
     .then((res) => {
       console.log("created here")
