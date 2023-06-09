@@ -37,10 +37,8 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
     // console.log("From Dashboard 2nd useEffect: " + JSON.stringify(loggedInUser))
     if (loggedInUser) {
       setIsAuthenticated((prevIsAuthenticated) => !prevIsAuthenticated);
-
-      console.log("Set Authenticated is ", isAuthenticated)
     }
-}, [navigate]);
+}, [loggedInUser]);
 
   
 
@@ -57,18 +55,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
       console.log(error);
     });
   }
-  // const handleDelete = (jamId: string) => {
-  //   fetch(`/jams/${jamId}`, {
-  //     method: 'DELETE'
-  //   })
-  //     .then(() => {
-  //       // remove the deleted jam from the state
-  //       setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+
 
   return (
     <div className='full-screen-container'>

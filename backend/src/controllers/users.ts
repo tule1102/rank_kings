@@ -92,15 +92,15 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
         }
 
         req.session.userId = user._id;
-        req.session.save(async (err) => {
-            if (err) {
-                console.log("error:" , err)
-                return  next(err);
-            }
-        });
-        console.log("From login endpoint" + req.session.userId)
+        // req.session.save(async (err) => {
+        //     if (err) {
+        //         console.log("error:" , err)
+        //         return  next(err);
+        //     }
+        // });
+        console.log("From login endpoint, session_user id is " + req.session.userId)
         // res.status(201).json(req.session.id);
-        await res.status(201).json(user);
+        res.status(201).json(user);
 
         
     } catch (error) {

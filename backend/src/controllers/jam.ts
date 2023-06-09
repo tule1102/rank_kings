@@ -89,7 +89,7 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
         console.log("jam.ts Line 82, it means the jam was created. ")
         res.status(201).json(newJam);
     } catch (error) {
-        // console.error(error)
+        console.error(error)
         next(error);
     }
 };
