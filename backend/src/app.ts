@@ -18,12 +18,12 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 
-// app.use(
-//     cors({
-//         origin: "http://localhost:4000",
-//         credentials: true,
-//     })
-// );
+app.use(
+    cors({
+        origin: "https://rank-kings-be.onrender.com",
+        credentials: true,
+    })
+);
 
 app.use(session({
     secret: env.SESSION_SECRET,
