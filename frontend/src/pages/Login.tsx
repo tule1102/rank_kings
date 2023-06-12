@@ -41,19 +41,17 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
   //   });
   // };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
   
-    axios.post("https://rank-kings-be.onrender.com/users/login", {
+    await axios.post("/users/login", {
       username: username,
       password: password
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((response) => {
-      console.log("response data is ", response.data);
+    }, 
+    )
+    .then(async (response) => {
+      console.log("response data is from Login ", response.data);
       onLoginSuccessful(response.data);
       navigate('/dashboard');
     })
@@ -67,62 +65,6 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
     });
   };
   
-
-
-  
-
-//   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-//     event.preventDefault();
-    
-//   axios.post('https://rank-kings-be.onrender.com/users/login', {
-//         username : username,
-//         password : password
-//       })
-//       .then((response) => {
-//         console.log("response data is ", response.data)
-//         onLoginSuccessful(response.data)
-//         navigate('/dashboard')
-//       }, (error) => {
-//         console.log(error);
-//         alert("Incorrect Credentials! Please try again.")
-//       });
-//   };
-
-// };
-
-// const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-//   event.preventDefault();
-
-//   fetch('https://rank-kings-be.onrender.com/users/login', {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       username: username,
-//       password: password
-//     }),
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//     .then((response) => {
-//       if (response.ok) {
-//         return response.json();
-//       } else {
-//         throw new Error('Incorrect Credentials! Please try again.');
-//       }
-//     })
-//     .then((data) => {
-//       console.log('response data is ', data);
-//       onLoginSuccessful(data);
-//       navigate('/dashboard');
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//       alert(error.message);
-//     });
-// };
-
-
-
   
 
   return (

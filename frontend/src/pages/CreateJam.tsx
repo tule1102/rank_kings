@@ -4,10 +4,10 @@ import axios from 'axios'
 import { User } from '../model';
 
 interface CreateJamProps {
-  loggedInUser: User | null
+  onLoginSuccessful: (user: User) => void,
 }
 
-const CreateJam: React.FC<CreateJamProps> = ({loggedInUser}) => {
+const CreateJam: React.FC<CreateJamProps> = ({onLoginSuccessful}) => {
   const [jamName, setJamName] = useState<string>('')
   const [prelimSize, setPrelimSize] = useState<number>(16)
   
@@ -23,8 +23,7 @@ const CreateJam: React.FC<CreateJamProps> = ({loggedInUser}) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("loggedInUser is: ", JSON.stringify(loggedInUser))
-    axios.post("https://rank-kings-be.onrender.com/jams", {
+    axios.post("/jams", {
       title : jamName,
       todos: [],
       completedTodos: [],
@@ -35,8 +34,7 @@ const CreateJam: React.FC<CreateJamProps> = ({loggedInUser}) => {
       console.log("created here")
       const newJamId = res.data._id;
       navigate(`/jam/${newJamId}`);
-      // navigate(`/jam/${newJamId}`, { state: { id: newJamId } });
-      // Push newly created props from here to "Jam.tsx"
+
     }).catch((error) => {
       console.log("Could not create a jam", error);
     });

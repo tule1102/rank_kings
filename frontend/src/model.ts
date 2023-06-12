@@ -15,5 +15,4 @@ export interface Jam {
 export interface User {
     username: string,
     email: string,
-    userId: string
 }

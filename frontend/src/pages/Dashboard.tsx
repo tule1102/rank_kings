@@ -14,30 +14,42 @@ interface DashboardProps {
   loggedInUser: User | null
 }
 
+
 const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userJam, setUserJam] = useState<Jam[]>([])
 
 
-  useEffect (() => {
-    console.log("loggedInUser is ", loggedInUser)
-    axios.get("https://rank-kings-be.onrender.com/jams")
-    .then((e) => {
-      // console.log("DATA FROM GET /JAMS ", e.data)
-      setUserJam(e.data)
-    }).catch((error) => {
-      console.error("An error occurred:", error);
-    })
-  }, [isAuthenticated])
+  // useEffect (() => {
+  //   axios.get("http://localhost:4000/jams")
+  //   .then((response) => {
+  //     // console.log("DATA FROM GET /JAMS ", e.data)
+  //     setUserJam(response.data)
+  //   }).catch((error) => {
+  //     console.error("An error occurred:", error);
+  //   })
+  // }, [isAuthenticated])
 
 
 
   useEffect(() => {
     // console.log("From Dashboard 2nd useEffect: " + JSON.stringify(loggedInUser))
-    if (loggedInUser) {
-      setIsAuthenticated((prevIsAuthenticated) => !prevIsAuthenticated);
-    }
+    setIsAuthenticated((prevIsAuthenticated) => !prevIsAuthenticated);
+      try {
+        if (isAuthenticated) {
+      axios.get("/jams")
+      .then((e) => {
+        // console.log("DATA FROM GET /JAMS ", e.data)
+        setUserJam(e.data)
+      }).catch((error) => {
+        console.error("An error occurred:", error);
+      })
+        }
+      } catch (error) {
+        console.log(error)
+      }
+      
 }, [loggedInUser]);
 
   
@@ -47,7 +59,7 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   }
 
   const handleDelete = (jamId: string) => {
-    axios.delete(`https://rank-kings-be.onrender.com/jams/${jamId}`)
+    axios.delete(`/jams/${jamId}`)
     .then(() => {
       // remove the deleted jam from the state
       setUserJam(prevState => prevState.filter(jam => jam._id !== jamId));

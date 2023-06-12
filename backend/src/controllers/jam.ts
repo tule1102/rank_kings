@@ -67,8 +67,7 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
     const authenticatedUserId = req.session.userId;
 
     try {
-        console.log("about to Authenticate the user", req.session.userId)
-        console.log("about2 to Authenticate the user", req.session.id)
+        console.log("FROM: createJam, req.session.userId", req.session.userId)
 
         assertIsDefined(authenticatedUserId);
         console.log("user was authenticated, when creating a jam")
@@ -78,7 +77,7 @@ export const createJam: RequestHandler<unknown, unknown, CreateJamBody, unknown>
         }
 
         const newJam = await JamModel.create({
-            userId: "yoyo",
+            userId: authenticatedUserId,
             title: title,
             todos: todos,
             completedTodos: completedTodos,

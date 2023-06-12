@@ -17,13 +17,19 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 
+
+app.use(
+    cors({
+        origin: "*",
+    })
+);
+
 app.use(session({
     secret: env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
         maxAge: 60 * 60 * 1000,
-        httpOnly: false
     },
     rolling: true,
     store: MongoStore.create({
@@ -31,14 +37,10 @@ app.use(session({
     }),
 }));
 
-const corsOptions = {
-    origin: "*"
-};
 
-app.use(cors(corsOptions));
 
 app.use("/users", userRoutes);
-app.use("/jams", requiresAuth, jamRoutes);
+app.use("/jams", requiresAuth ,jamRoutes);
 
 
 app.use((req, res, next) => {

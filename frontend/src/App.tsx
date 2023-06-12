@@ -52,23 +52,37 @@ function App () {
   //   fetchLoggedInUser();
   // }, []);
   
+  // useEffect(() => {
+  //    const fetchLoggedInUser = () => {
+  //     axios
+  //       .get("http://localhost:4000/users")
+  //       .then(async (res) => {
+  //         const user = await res.data;
+  //         setLoggedInUser(user.data);
+  //         console.log("App.tsx Front End: ", loggedInUser);
+  //       })
+  //       .catch((error) => {
+  //         console.log("No logged in Users App.tsx", loggedInUser);
+  //         console.error(error);
+  //       });
+  //   };
+  //   fetchLoggedInUser();
+  // }, []);
+
   useEffect(() => {
-    const fetchLoggedInUser = () => {
-      axios
-        .get("https://rank-kings-be.onrender.com/users")
-        .then((res) => {
-          console.log("res is ", res);
-          const user = res.data;
-          console.log("user is ", user);
-          setLoggedInUser(user.data);
-          console.log("user is set to ", loggedInUser);
-        })
-        .catch((error) => {
-          console.log("No logged in Users App.tsx", loggedInUser);
+    async function fetchLoggedInUser() {
+      if (loggedInUser) {
+        try {
+          const response = await axios.get("/users");
+          const user = response.data;
+          setLoggedInUser(user);
+          console.log("App.tsx loggedInUser" , user)
+        } catch (error) {
           console.error(error);
-        });
-    };
-  
+        }
+      }
+
+    }
     fetchLoggedInUser();
   }, []);
   
@@ -88,8 +102,11 @@ function App () {
           <Route path="/page_not_found" element={<NotFoundPage/>}/>
           {/* <Route path="/rankking" element={<App/>}/> */}
           <Route path="/registration" element={<Registration/>}/>
-          <Route path="/dashboard" element={<Dashboard loggedInUser={loggedInUser}/>}/>
-          <Route path="/createJam" element={<CreateJam loggedInUser={loggedInUser}/>}/>
+          <Route path="/dashboard" element={<Dashboard loggedInUser={loggedInUser} />}/>
+          <Route path="/createJam" element={<CreateJam 
+          onLoginSuccessful={(user) => {
+            setLoggedInUser(user);
+          }}/>}/>
           <Route path="/jam/:id" element={<Jam />}/>
           {/* Catch-all route */}
           <Route path="*" element={<Navigate to="/page_not_found" replace />} />

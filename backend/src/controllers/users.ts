@@ -4,7 +4,7 @@ import UserModel from "../models/user";
 import bcrypt from "bcrypt";
 
 export const getAuthenticatedUser: RequestHandler = async (req, res, next) => {
-
+    console.log("From getAuthenticatedUser, authenticatedUserId is: ", req.session.userId)
     const authenticatedUserId = req.session.userId;
 
     try {
@@ -77,9 +77,8 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
             throw createHttpError(400, "Parameters missing");
         }
 
-        console.log("looking for user")
         const user = await UserModel.findOne({ username: username }).select("+password +email").exec();
-        console.log("User is ", JSON.stringify(user))
+        console.log("User is ", JSON.stringify(user?._id))
 
         if (!user) {
             throw createHttpError(401, "Invalid credentials");
@@ -92,14 +91,8 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
         }
 
         req.session.userId = user._id;
-        // req.session.save(async (err) => {
-        //     if (err) {
-        //         console.log("error:" , err)
-        //         return  next(err);
-        //     }
-        // });
-        console.log("From login endpoint, session_user id is " + req.session.userId)
-        // res.status(201).json(req.session.id);
+ 
+        console.log("FROM: LOGIN, req.session.userId: " + req.session.userId)
         res.status(201).json(user);
 
         
