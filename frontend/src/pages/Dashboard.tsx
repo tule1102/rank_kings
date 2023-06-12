@@ -21,23 +21,18 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
   const [userJam, setUserJam] = useState<Jam[]>([])
 
 
-  // useEffect (() => {
-  //   axios.get("http://localhost:4000/jams")
-  //   .then((response) => {
-  //     // console.log("DATA FROM GET /JAMS ", e.data)
-  //     setUserJam(response.data)
-  //   }).catch((error) => {
-  //     console.error("An error occurred:", error);
-  //   })
-  // }, [isAuthenticated])
+  useEffect (() => {
+    if(loggedInUser) {
+      setIsAuthenticated((prevIsAuthenticated) => !prevIsAuthenticated);
+    }
+  }, [])
 
 
 
   useEffect(() => {
-    // console.log("From Dashboard 2nd useEffect: " + JSON.stringify(loggedInUser))
-    setIsAuthenticated((prevIsAuthenticated) => !prevIsAuthenticated);
+    
       try {
-        if (isAuthenticated) {
+
       axios.get("/jams")
       .then((e) => {
         // console.log("DATA FROM GET /JAMS ", e.data)
@@ -45,12 +40,12 @@ const Dashboard: React.FC<DashboardProps> = ({loggedInUser}) => {
       }).catch((error) => {
         console.error("An error occurred:", error);
       })
-        }
+        
       } catch (error) {
         console.log(error)
       }
       
-}, [loggedInUser]);
+}, [isAuthenticated]);
 
   
 
