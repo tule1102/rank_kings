@@ -14,7 +14,7 @@ const NavBarLoggedInView = ({ user, onLogoutSuccessful }: NavBarLoggedInViewProp
 
     async function logout() {
         try {
-            await axios.post("/users/logout")
+            await axios.post("/users/logout",{withCredentials: true})
             .then((res) => {
               onLogoutSuccessful();
               navigate('/')

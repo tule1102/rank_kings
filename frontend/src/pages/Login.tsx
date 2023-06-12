@@ -43,12 +43,12 @@ const Login: React.FC<LoginProps> = ({onLoginSuccessful}) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+   
   
     await axios.post("/users/login", {
       username: username,
       password: password
-    }, 
+    }, {withCredentials: true}
     )
     .then(async (response) => {
       console.log("response data is from Login ", response.data);

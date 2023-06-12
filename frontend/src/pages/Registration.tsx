@@ -33,7 +33,7 @@ const Registration: React.FC = () => {
       username : username,
       email: email,
       password: password,
-     })
+     },{withCredentials: true})
     .then((response) => {
       navigate('/')
     }, (error) => {
